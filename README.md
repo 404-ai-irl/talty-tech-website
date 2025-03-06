@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Talty Tech Website
+
+This is the official website for Talty Tech, built with Next.js 15 and React 19.
+
+## Project Overview
+
+The Talty Tech website provides information about our services, company, and ways to contact us. It features:
+
+- Modern, responsive design
+- Service listings with detailed information
+- Contact form for lead generation
+- Legal pages (Terms of Service, Privacy Policy)
+
+## Technology Stack
+
+- **Framework**: [Next.js](https://nextjs.org) 15.2.1
+- **UI Library**: [React](https://react.dev) 19.0.0
+- **Styling**: [Tailwind CSS](https://tailwindcss.com) 4.x
+- **Language**: [TypeScript](https://www.typescriptlang.org/) 5.x
+- **UI Components**: 
+  - [Radix UI](https://www.radix-ui.com/) for accessible components
+  - Custom UI components built with Tailwind
+- **Form Handling**: react-hook-form with zod validation
+- **Theme Support**: next-themes for light/dark mode
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+Then, run the development server:
+
+```bash
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The site uses Turbopack for faster development builds.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+- `app/` - Next.js App Router pages and layouts
+  - `about/` - About page
+  - `contact/` - Contact page
+  - `legal/` - Legal pages (Terms of Service, Privacy Policy)
+  - `services/` - Service listings and details
+- `components/` - React components
+  - `forms/` - Form components
+  - `sections/` - Major page sections
+  - `segments/` - Reusable page segments
+  - `ui/` - UI components (buttons, cards, etc.)
+- `lib/` - Utility functions
+- `public/` - Static assets
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment to Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Next Steps for Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Create a Vercel Account**: If you don't have one already, sign up at [vercel.com](https://vercel.com)
 
-## Deploy on Vercel
+2. **Install Vercel CLI** (optional):
+   ```bash
+   pnpm install -g vercel
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Deploy from Git**:
+   - Push your code to a Git repository (GitHub, GitLab, or Bitbucket)
+   - Import the project in the Vercel dashboard
+   - Configure your project settings (environment variables, build commands)
+   - Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. **Alternative: Deploy from CLI**:
+   ```bash
+   vercel
+   ```
+
+5. **Configure Custom Domain**:
+   - Add your domain in the Vercel dashboard
+   - Update DNS settings as instructed
+
+6. **Set Up Environment Variables**:
+   - Add any required environment variables in the Vercel dashboard
+
+7. **Enable Analytics** (optional):
+   - Enable Vercel Analytics for performance monitoring
+
+For more details, see the [Vercel deployment documentation](https://vercel.com/docs/deployments/overview).

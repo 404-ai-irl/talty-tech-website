@@ -1,0 +1,201 @@
+/* Hero section specific styles */
+
+:root {
+  --primary-rgb: 52, 52, 52; /* Default dark color in RGB format */
+}
+
+.dark {
+  --primary-rgb: 250, 250, 250; /* Light color for dark mode in RGB format */
+}
+
+.gradientText {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--chart-1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Radial gradient background */
+.gradientRadial {
+  background: radial-gradient(circle at center, var(--primary-foreground) 0%, transparent 70%);
+  opacity: 0.05;
+}
+
+/* Animated underline effect */
+.animatedUnderline {
+  position: relative;
+}
+
+.animatedUnderline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.animatedUnderline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Fade In animations */
+.fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.fadeInDelay1 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.2s forwards;
+}
+
+.fadeInDelay2 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.4s forwards;
+}
+
+.fadeInDelay3 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.6s forwards;
+}
+
+.fadeInDelay4 {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.8s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide In animations */
+.slideInLeft {
+  opacity: 0;
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.slideInLeftDelay1 {
+  opacity: 0;
+  animation: slideInLeft 0.6s ease-out 0.2s forwards;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale In animation */
+.scaleIn {
+  opacity: 0;
+  animation: scaleIn 0.8s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Rotating animation */
+.rotating {
+  animation: rotating 20s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Card hover animation */
+.cardHover {
+  transition: transform 0.2s ease-out;
+}
+
+.cardHover:hover {
+  transform: translateY(-5px);
+}
+
+/* Floating animation for the WatchTower */
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Pulse animation for CTA emphasis */
+.pulse {
+  position: relative;
+}
+
+.pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.375rem; /* Match button radius */
+  box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .heroContent {
+    order: 2;
+  }
+  
+  .heroVisual {
+    order: 1;
+  }
+}

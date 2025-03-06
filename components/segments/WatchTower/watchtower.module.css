@@ -1,0 +1,841 @@
+/* WatchTower Component CSS Module */
+.watchtower {
+  /* Colors */
+  --tree1: #2D1427;
+  --tree2: #5A0831;
+  --tree3: #CD4D45;
+  --range: #F46435;
+  --mountain1: #F59452;
+  --mountain2: #F47A45;
+  --wood: #370D09;
+  --pole: #791819;
+  --flag: #C63737;
+  --tower1: #76122C;
+  --tower2: #C93D3D;
+  --tower3: #821021;
+  --tower4: #F4633A;
+  --tower5: #4B1205;
+  --tower6: #C13C45;
+  --background: #FAE0C8;
+  --white: #FFF;
+  --black: #000;
+  
+  /* Base unit for scaling */
+  --base-unit: 1rem;
+}
+
+/* Container inherits variables from watchTower */
+.container {
+  composes: watchtower;
+  position: relative;
+  width: calc(9 * var(--base-unit));
+  height: calc(18.75 * var(--base-unit));
+  background: var(--background);
+  border-radius: calc(6.25 * var(--base-unit));
+  overflow: hidden;
+  z-index: 1;
+}
+
+.mountain {
+  position: absolute;
+  top: 0;
+  opacity: 1;
+}
+
+.backdrop {
+  position: absolute;
+  top: calc(5 * var(--base-unit));
+  left: calc(-11.25 * var(--base-unit));
+  width: 0;
+  opacity: 0.8;
+  height: 0;
+  border-left: calc(16.25 * var(--base-unit)) solid transparent;
+  border-right: calc(16.25 * var(--base-unit)) solid transparent;
+  border-bottom: calc(12.5 * var(--base-unit)) solid var(--mountain1);
+}
+
+.zig {
+  position: absolute;
+  width: 0;
+  height: 0;
+  transform: rotate(217deg);
+}
+
+.zag1 {
+  position: absolute;
+  top: calc(5.19 * var(--base-unit));
+  left: calc(4.38 * var(--base-unit));
+  width: 0;
+  height: 0;
+  border-left: calc(0.625 * var(--base-unit)) solid transparent;
+  border-right: calc(0.625 * var(--base-unit)) solid transparent;
+  border-bottom: calc(1.875 * var(--base-unit)) solid var(--mountain2);
+}
+
+.zag2 {
+  position: absolute;
+  top: calc(6.31 * var(--base-unit));
+  left: calc(4.67 * var(--base-unit));
+  width: 0;
+  height: 0;
+  border-left: calc(1.25 * var(--base-unit)) solid transparent;
+  border-right: calc(1.25 * var(--base-unit)) solid transparent;
+  border-bottom: calc(3.75 * var(--base-unit)) solid var(--mountain2);
+}
+
+.zag3 {
+  position: absolute;
+  top: calc(7.44 * var(--base-unit));
+  left: calc(5.36 * var(--base-unit));
+  width: 0;
+  height: 0;
+  border-left: calc(1.875 * var(--base-unit)) solid transparent;
+  border-right: calc(1.875 * var(--base-unit)) solid transparent;
+  border-bottom: calc(5.625 * var(--base-unit)) solid var(--mountain2);
+}
+
+.zag4 {
+  position: absolute;
+  top: calc(8.56 * var(--base-unit));
+  left: calc(6.38 * var(--base-unit));
+  width: 0;
+  height: 0;
+  border-left: calc(2.5 * var(--base-unit)) solid transparent;
+  border-right: calc(2.5 * var(--base-unit)) solid transparent;
+  border-bottom: calc(7.5 * var(--base-unit)) solid var(--mountain2);
+}
+
+.tree {
+  opacity: 1;
+  position: absolute;
+}
+
+/* Tree type styling */
+.treeFront .top,
+.treeFront .mid,
+.treeFront .bot {
+  border-bottom-color: var(--tree1);
+}
+
+.treeMid .top,
+.treeMid .mid,
+.treeMid .bot {
+  border-bottom-color: var(--tree2);
+}
+
+.treeBack .top,
+.treeBack .mid,
+.treeBack .bot {
+  border-bottom-color: var(--tree3);
+}
+
+/* Tree positions - Front trees */
+.treeFront.tree1 {
+  top: calc(12.5 * var(--base-unit));
+  left: 0;
+}
+
+.treeFront.tree2 {
+  top: calc(13.75 * var(--base-unit));
+  left: calc(3.25 * var(--base-unit));
+}
+
+.treeFront.tree3 {
+  top: calc(14.88 * var(--base-unit));
+  left: calc(5.88 * var(--base-unit));
+}
+
+.treeFront.tree4 {
+  top: calc(14 * var(--base-unit));
+  left: calc(8.5 * var(--base-unit));
+}
+
+/* Tree positions - Mid trees */
+.treeMid.tree1 {
+  top: calc(14.06 * var(--base-unit));
+  left: calc(1.69 * var(--base-unit));
+}
+
+.treeMid.tree2 {
+  top: calc(14.5 * var(--base-unit));
+  left: calc(4.19 * var(--base-unit));
+}
+
+.treeMid.tree3 {
+  top: calc(14.06 * var(--base-unit));
+  left: calc(5.38 * var(--base-unit));
+}
+
+.treeMid.tree4 {
+  top: calc(13.94 * var(--base-unit));
+  left: calc(6.63 * var(--base-unit));
+}
+
+.treeMid.tree5 {
+  top: calc(13.44 * var(--base-unit));
+  left: calc(7.94 * var(--base-unit));
+}
+
+/* Tree positions - Back trees */
+.treeBack.tree1 {
+  top: calc(12.63 * var(--base-unit));
+  left: calc(-0.75 * var(--base-unit));
+}
+
+.treeBack.tree2 {
+  top: calc(12.75 * var(--base-unit));
+  left: calc(1.06 * var(--base-unit));
+}
+
+.treeBack.tree3 {
+  top: calc(13.25 * var(--base-unit));
+  left: calc(2.5 * var(--base-unit));
+}
+
+.treeBack.tree4 {
+  top: calc(13.13 * var(--base-unit));
+  left: calc(3.75 * var(--base-unit));
+}
+
+.treeBack.tree5 {
+  top: calc(13 * var(--base-unit));
+  left: calc(5 * var(--base-unit));
+}
+
+.treeBack.tree6 {
+  top: calc(13.13 * var(--base-unit));
+  left: calc(6.13 * var(--base-unit));
+}
+
+.treeBack.tree7 {
+  top: calc(12.75 * var(--base-unit));
+  left: calc(7.19 * var(--base-unit));
+}
+
+.treeBack.tree8 {
+  top: calc(12.63 * var(--base-unit));
+  left: calc(8.13 * var(--base-unit));
+}
+
+/* Tree parts */
+.top {
+  width: 0;
+  height: 0;
+  border-left: calc(1.06 * var(--base-unit)) solid transparent;
+  border-right: calc(1.06 * var(--base-unit)) solid transparent;
+  border-bottom: calc(2.81 * var(--base-unit)) solid var(--black);
+}
+
+.mid {
+  position: absolute;
+  top: calc(1 * var(--base-unit));
+  left: calc(-0.44 * var(--base-unit));
+  width: 0;
+  height: 0;
+  border-left: calc(1.5 * var(--base-unit)) solid transparent;
+  border-right: calc(1.5 * var(--base-unit)) solid transparent;
+  border-bottom: calc(3.63 * var(--base-unit)) solid var(--black);
+}
+
+.bot {
+  position: absolute;
+  top: calc(1.88 * var(--base-unit));
+  left: calc(-0.75 * var(--base-unit));
+  width: 0;
+  height: 0;
+  border-left: calc(1.81 * var(--base-unit)) solid transparent;
+  border-right: calc(1.81 * var(--base-unit)) solid transparent;
+  border-bottom: calc(4.25 * var(--base-unit)) solid var(--black);
+}
+
+.range {
+  position: absolute;
+  top: 0;
+  opacity: 1;
+}
+
+.range > div {
+  position: absolute;
+  background: var(--range);
+  width: calc(3.75 * var(--base-unit));
+  height: calc(3.13 * var(--base-unit));
+}
+
+/* Range positions */
+.r1 {
+  top: calc(12.5 * var(--base-unit));
+  left: calc(-1.38 * var(--base-unit));
+  transform: rotate(34deg);
+}
+
+.r2 {
+  top: calc(12.38 * var(--base-unit));
+  left: calc(-1.25 * var(--base-unit));
+  transform: rotate(-8deg);
+}
+
+.r3 {
+  top: calc(12.81 * var(--base-unit));
+  left: calc(1.5 * var(--base-unit));
+  transform: rotate(25deg);
+}
+
+.r4 {
+  top: calc(12.81 * var(--base-unit));
+  left: calc(3.13 * var(--base-unit));
+  transform: rotate(-28deg);
+}
+
+.r5 {
+  top: calc(12.5 * var(--base-unit));
+  left: calc(5.5 * var(--base-unit));
+  transform: rotate(14deg);
+}
+
+.r6 {
+  top: calc(12.5 * var(--base-unit));
+  left: calc(6.25 * var(--base-unit));
+  transform: rotate(-38deg);
+}
+
+.r7 {
+  top: calc(12.44 * var(--base-unit));
+  left: calc(7.63 * var(--base-unit));
+  transform: rotate(30deg);
+}
+
+.tower {
+  position: absolute;
+  width: calc(4.63 * var(--base-unit));
+  margin-top: calc(6.75 * var(--base-unit));
+  margin-left: calc(50% - 2.31 * var(--base-unit));
+  opacity: 1;
+}
+
+.shadow {
+  position: absolute;
+  z-index: 9999;
+  top: calc(0.75 * var(--base-unit));
+  width: 100%;
+  height: calc(2.63 * var(--base-unit));
+  background: var(--black);
+  clip-path: polygon(50% 0, 100% 40%, 100% 45%, 87% 45%, 87% 90%, 100% 90%, 100% 100%, 60% 100%, 60% 31%, 50% 0);
+  opacity: .4;
+}
+
+.flagPole {
+  width: calc(0.13 * var(--base-unit));
+  height: calc(0.75 * var(--base-unit));
+  background: var(--pole);
+  margin-left: calc(2.25 * var(--base-unit));
+}
+
+.flagPole:after {
+  content: '';
+  width: calc(0.75 * var(--base-unit));
+  height: calc(0.38 * var(--base-unit));
+  background: var(--flag);
+  position: absolute;
+  display: block;
+}
+
+.roof1 {
+  border-left: calc(2.13 * var(--base-unit)) solid transparent;
+  border-right: calc(2.13 * var(--base-unit)) solid transparent;
+  border-bottom: calc(0.94 * var(--base-unit)) solid var(--tower1);
+}
+
+.roof2 {
+  width: 100%;
+  height: calc(0.19 * var(--base-unit));
+  background: var(--tower2);
+}
+
+.wall {
+  position: relative;
+  width: 76%;
+  height: calc(1.38 * var(--base-unit));
+  background: var(--tower3);
+  margin-left: 12%;
+  padding-top: calc(0.25 * var(--base-unit));
+}
+
+/* Wall windows */
+.w1, .w2, .w3, .w4, .w5 {
+  position: absolute;
+  width: calc(0.5 * var(--base-unit));
+  height: calc(0.88 * var(--base-unit));
+  background: var(--tower4);
+}
+
+.w1 {
+  left: calc(0.25 * var(--base-unit));
+}
+
+.w2 {
+  left: calc(0.88 * var(--base-unit));
+}
+
+.w3 {
+  left: calc(1.5 * var(--base-unit));
+}
+
+.w4 {
+  left: calc(2.13 * var(--base-unit));
+}
+
+.w5 {
+  left: calc(2.75 * var(--base-unit));
+}
+
+.legs {
+  position: relative;
+}
+
+.left,
+.right {
+  position: absolute;
+  width: calc(0.25 * var(--base-unit));
+  height: calc(9.38 * var(--base-unit));
+  background: var(--wood);
+}
+
+.left {
+  transform: rotate(3deg);
+  left: calc(0.75 * var(--base-unit));
+}
+
+.right {
+  transform: rotate(-3deg);
+  right: calc(0.75 * var(--base-unit));
+}
+
+.support1,
+.support2 {
+  position: absolute;
+}
+
+.criss,
+.cross {
+  position: absolute;
+  left: calc(2.19 * var(--base-unit));
+  width: calc(0.25 * var(--base-unit));
+  height: calc(4 * var(--base-unit));
+  background: var(--wood);
+}
+
+.criss {
+  transform: rotate(45deg);
+}
+
+.cross {
+  transform: rotate(-45deg);
+}
+
+.flat {
+  position: absolute;
+  width: calc(2.88 * var(--base-unit));
+  height: calc(0.25 * var(--base-unit));
+  background: var(--wood);
+  bottom: calc(-3.44 * var(--base-unit));
+  left: calc(0.88 * var(--base-unit));
+}
+
+.support1 {
+  top: calc(-0.88 * var(--base-unit));
+}
+
+.support2 {
+  top: calc(1.75 * var(--base-unit));
+}
+
+.railing {
+  position: relative;
+  top: calc(-1 * var(--base-unit));
+}
+
+/* Railing elements */
+.railing .r1, 
+.railing .r2, 
+.railing .r3, 
+.railing .r4, 
+.railing .r5, 
+.railing .r6, 
+.railing .r7, 
+.railing .r8, 
+.railing .r9 {
+  position: absolute;
+  width: calc(0.13 * var(--base-unit));
+  height: calc(0.63 * var(--base-unit));
+  background: var(--wood);
+}
+
+.railing .r1 {
+  left: calc(0.31 * var(--base-unit));
+}
+
+.railing .r2 {
+  left: calc(0.75 * var(--base-unit));
+}
+
+.railing .r3 {
+  left: calc(1.25 * var(--base-unit));
+}
+
+.railing .r4 {
+  left: calc(1.75 * var(--base-unit));
+}
+
+.railing .r5 {
+  left: calc(2.25 * var(--base-unit));
+}
+
+.railing .r6 {
+  left: calc(2.75 * var(--base-unit));
+}
+
+.railing .r7 {
+  left: calc(3.25 * var(--base-unit));
+}
+
+.railing .r8 {
+  left: calc(3.75 * var(--base-unit));
+}
+
+.railing .r9 {
+  right: calc(0.31 * var(--base-unit));
+}
+
+.railing .top,
+.railing .bot1,
+.railing .bot2 {
+  position: absolute;
+}
+
+.railing .top {
+  width: 100%;
+  height: calc(0.13 * var(--base-unit));
+  background: var(--tower5);
+}
+
+.railing .bot1 {
+  width: 100%;
+  height: calc(0.25 * var(--base-unit));
+  top: calc(0.63 * var(--base-unit));
+  background: var(--tower6);
+}
+
+.railing .bot2 {
+  width: 80%;
+  height: calc(0.13 * var(--base-unit));
+  top: calc(0.88 * var(--base-unit));
+  left: calc(0.5 * var(--base-unit));
+  background: var(--tower5);
+  opacity: 1;
+}
+
+.cloud {
+  position: absolute;
+  width: calc(10.13 * var(--base-unit));
+  height: calc(3.44 * var(--base-unit));
+  overflow: hidden;
+}
+
+.big {
+  top: calc(0.63 * var(--base-unit));
+  transform: scale(.8);
+  animation: bigCloud 4s linear;
+  animation-iteration-count: infinite;
+  animation-direction: forwards;
+}
+
+.small {
+  top: calc(4.38 * var(--base-unit));
+  transform: scale(.4);
+  animation: smallCloud 4s linear;
+  animation-iteration-count: infinite;
+  animation-direction: forwards;
+  animation-delay: 3s;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.c1 {
+  width: calc(2 * var(--base-unit));
+  height: calc(2 * var(--base-unit));
+  left: auto;
+  top: auto;
+  bottom: calc(-0.94 * var(--base-unit));
+}
+
+.c2 {
+  width: calc(2.19 * var(--base-unit));
+  height: calc(2.19 * var(--base-unit));
+  left: calc(1.25 * var(--base-unit));
+  top: auto;
+  bottom: 0;
+}
+
+.c3 {
+  width: calc(1.56 * var(--base-unit));
+  height: calc(1.56 * var(--base-unit));
+  left: calc(3 * var(--base-unit));
+  top: auto;
+  bottom: calc(0.94 * var(--base-unit));
+}
+
+.c4 {
+  width: calc(2.19 * var(--base-unit));
+  height: calc(2.19 * var(--base-unit));
+  left: calc(4.06 * var(--base-unit));
+  top: auto;
+  bottom: calc(1.25 * var(--base-unit));
+}
+
+.c5 {
+  width: calc(1.56 * var(--base-unit));
+  height: calc(1.56 * var(--base-unit));
+  left: calc(5.88 * var(--base-unit));
+  top: auto;
+  bottom: calc(1 * var(--base-unit));
+}
+
+.c6 {
+  width: calc(1.88 * var(--base-unit));
+  height: calc(1.88 * var(--base-unit));
+  left: calc(6.88 * var(--base-unit));
+  top: auto;
+  bottom: calc(-0.31 * var(--base-unit));
+}
+
+.c7 {
+  width: calc(1.88 * var(--base-unit));
+  height: calc(1.88 * var(--base-unit));
+  left: calc(8.25 * var(--base-unit));
+  top: auto;
+  bottom: calc(-0.94 * var(--base-unit));
+}
+
+.c8 {
+  width: calc(5.63 * var(--base-unit));
+  height: calc(5.63 * var(--base-unit));
+  left: calc(1.88 * var(--base-unit));
+  top: auto;
+  bottom: calc(-3.44 * var(--base-unit));
+}
+
+.birds {
+  position: absolute;
+  z-index: 9999;
+  width: calc(6.25 * var(--base-unit));
+  height: calc(6.25 * var(--base-unit));
+}
+
+.front {
+  animation: flyFront 4s linear;
+  animation-direction: forwards;
+  animation-iteration-count: infinite;
+  animation-delay: .5s;
+  top: calc(12.5 * var(--base-unit));
+  left: calc(12.5 * var(--base-unit));
+}
+
+.back {
+  animation: flyBack 4s linear;
+  animation-direction: forwards;
+  animation-iteration-count: infinite;
+  animation-delay: .5s;
+  top: calc(3.13 * var(--base-unit));
+  left: calc(-26.56 * var(--base-unit));
+}
+
+.bird {
+  position: absolute;
+  transform: scale(0.15);
+}
+
+/* Bird wing animations */
+.b1 .wing1,
+.b2 .wing1,
+.b5 .wing1,
+.b8 .wing1,
+.b9 .wing1,
+.b11 .wing1 {
+  animation: flap .5s ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transform-origin: 0 0;
+  animation-duration: 0.5s;
+}
+
+.b3 .wing1,
+.b4 .wing1,
+.b6 .wing1,
+.b7 .wing1,
+.b10 .wing1,
+.b12 .wing1 {
+  animation: flap .5s ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transform-origin: 0 0;
+  animation-duration: 1.5s;
+}
+
+/* Bird positions */
+.b1 {
+  top: calc(-1.88 * var(--base-unit));
+}
+
+.b2 {
+  top: calc(-1.25 * var(--base-unit));
+  left: calc(-0.94 * var(--base-unit));
+}
+
+.b3 {
+  top: auto;
+  left: calc(0.63 * var(--base-unit));
+}
+
+.b4 {
+  top: calc(0.94 * var(--base-unit));
+  left: calc(1.25 * var(--base-unit));
+}
+
+.b5 {
+  top: calc(1.88 * var(--base-unit));
+  left: calc(-0.31 * var(--base-unit));
+}
+
+.b6 {
+  top: calc(2.81 * var(--base-unit));
+  left: calc(0.31 * var(--base-unit));
+}
+
+.b7 {
+  top: calc(-0.31 * var(--base-unit));
+  left: calc(-2.19 * var(--base-unit));
+}
+
+.b8 {
+  top: calc(0.63 * var(--base-unit));
+  left: calc(-1.56 * var(--base-unit));
+}
+
+.b9 {
+  top: calc(1.56 * var(--base-unit));
+  left: calc(-3.13 * var(--base-unit));
+}
+
+.b10 {
+  top: calc(2.5 * var(--base-unit));
+  left: calc(-2.5 * var(--base-unit));
+}
+
+.b11 {
+  top: calc(-0.63 * var(--base-unit));
+  left: calc(-4.69 * var(--base-unit));
+}
+
+.b12 {
+  top: calc(0.31 * var(--base-unit));
+  left: calc(-4.06 * var(--base-unit));
+}
+
+.body {
+  clip-path: polygon(0 100%, 20% 20%, 40% 0, 100% 100%, 20% 80%);
+  background: var(--black);
+  width: calc(9.38 * var(--base-unit));
+  height: calc(2.5 * var(--base-unit));
+}
+
+.wing1 {
+  position: relative;
+  left: calc(2.5 * var(--base-unit));
+  top: calc(-1.25 * var(--base-unit));
+  width: calc(2.5 * var(--base-unit));
+  height: calc(3.13 * var(--base-unit));
+  background: var(--black);
+  transform: skew(10deg);
+}
+
+.wing2 {
+  position: absolute;
+  bottom: calc(-1.56 * var(--base-unit));
+  left: calc(0.81 * var(--base-unit));
+  transform: rotate(-5deg);
+}
+
+.wing3 {
+  width: calc(2.5 * var(--base-unit));
+  height: calc(1.88 * var(--base-unit));
+  background: var(--black);
+  transform: skew(40deg);
+}
+
+@keyframes flap {
+  0% {
+    transform: skew(10deg) rotateX(50deg);
+  }
+  100% {
+    transform: skew(15deg) rotateX(120deg);
+  }
+}
+
+@keyframes flyFront {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(15deg);
+  }
+  100% {
+    transform: translate3d(calc(-37.5 * var(--base-unit)), calc(-9.38 * var(--base-unit)), 0) rotate(15deg);
+  }
+}
+
+@keyframes flyBack {
+  0% {
+    transform: translate3d(0, 0, 0) scale(.6) scaleX(-1) rotate(-15deg);
+  }
+  100% {
+    transform: translate3d(calc(37.5 * var(--base-unit)), calc(-3.13 * var(--base-unit)), 0) scale(.6) scaleX(-1) rotate(15deg);
+  }
+}
+
+@keyframes bigCloud {
+  0% {
+    transform: translate3d(calc(-12 * var(--base-unit)), 0, 0) scale(.8);
+  }
+  100% {
+    transform: translate3d(calc(12 * var(--base-unit)), 0, 0) scale(.8);
+  }
+}
+
+@keyframes smallCloud {
+  0% {
+    transform: translate3d(calc(12 * var(--base-unit)), 0, 0) scale(.4);
+  }
+  100% {
+    transform: translate3d(calc(-12 * var(--base-unit)), 0, 0) scale(.4);
+  }
+}
+
+/* Media queries for responsive scaling */
+@media (max-width: 768px) {
+  .watchTower {
+    --base-unit: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .watchTower {
+    --base-unit: 0.6rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .watchTower {
+    --base-unit: 1.2rem;
+  }
+}
