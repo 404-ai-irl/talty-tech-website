@@ -1,14 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { services, servicesIconMap } from '../../data';
-import {
-  H1,
-  H2,
-  H3,
-  P,
-  List
-} from '@/components/ui/typography';
+import { H1, H2, H3, P, List } from '@/components/ui/typography';
 
 interface ServicePageProps {
   params: {
@@ -17,23 +12,40 @@ interface ServicePageProps {
   };
 }
 
-export default function ServicePage({ params }: ServicePageProps) {
+export async function generateMetadata(context: ServicePageProps): Promise<Metadata> {
+  // Await the params before using its properties
+  const params = await context.params;
   const { category, service: serviceSlug } = params;
-  
+  const service = services.find(s => {
+    const parts = s.href.split('/');
+    return parts[2] === category && parts[3] === serviceSlug;
+  });
+  if (!service) {
+    return { title: 'Service Not Found' };
+  }
+  return {
+    title: service.title,
+    description: service.description,
+  };
+}
+
+export default async function ServicePage(context: ServicePageProps) {
+  // Await the params before destructuring
+  const params = await context.params;
+  const { category, service: serviceSlug } = params;
+
   // Find the specific service based on URL parameters
   const service = services.find(s => {
     const parts = s.href.split('/');
     return parts[2] === category && parts[3] === serviceSlug;
   });
   
-  // If service doesn't exist, show 404
   if (!service) {
     notFound();
   }
-  
-  // Get the icon component for this service
+
   const Icon = servicesIconMap[service.icon];
-  
+
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="mb-8">
@@ -44,33 +56,28 @@ export default function ServicePage({ params }: ServicePageProps) {
           ← Back to {service.category.name} services
         </Link>
       </div>
-      
+
       <div className="max-w-3xl mx-auto">
         <div className="flex items-center mb-6">
           {Icon && <Icon className="h-8 w-8 mr-3 text-blue-600" />}
           <H1>{service.title}</H1>
         </div>
-        
+
         <div className="max-w-none">
           <P className="text-xl text-slate-600 dark:text-slate-300 mb-8">
             {service.description}
           </P>
-          
-          {/* Additional service details - this would typically come from a CMS or more detailed data source */}
+
           <H2>What We Offer</H2>
           <P>
-            Our {service.title} service is designed to help businesses achieve their goals through
-            innovative technology solutions. We work closely with you to understand your specific needs
-            and deliver tailored solutions that drive results.
+            Our {service.title} service is designed to help businesses achieve their goals through innovative technology solutions. We work closely with you to understand your specific needs and deliver tailored solutions that drive results.
           </P>
-          
+
           <H2>Our Approach</H2>
           <P>
-            We follow a collaborative, iterative approach to ensure that the final product meets your
-            expectations and business requirements. Our team of experts will guide you through every
-            step of the process, from initial consultation to final delivery and beyond.
+            We follow a collaborative, iterative approach to ensure that the final product meets your expectations and business requirements. Our team of experts will guide you through every step of the process, from initial consultation to final delivery and beyond.
           </P>
-          
+
           <H2>Why Choose Us</H2>
           <List>
             <li>Experienced team with deep technical expertise</li>
@@ -79,10 +86,12 @@ export default function ServicePage({ params }: ServicePageProps) {
             <li>Commitment to quality and best practices</li>
             <li>Ongoing support and maintenance options</li>
           </List>
-          
+
           <div className="mt-12 bg-slate-50 dark:bg-slate-800 p-6 rounded-lg">
             <H3 className="mb-4">Ready to get started?</H3>
-            <P>Contact us today to discuss how our {service.title} service can benefit your business.</P>
+            <P>
+              Contact us today to discuss how our {service.title} service can benefit your business.
+            </P>
             <Link
               href="/contact"
               className="inline-block mt-4 px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
@@ -96,8 +105,7 @@ export default function ServicePage({ params }: ServicePageProps) {
   );
 }
 
-// Generate static paths for all services
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return services.map(service => {
     const parts = service.href.split('/');
     return {

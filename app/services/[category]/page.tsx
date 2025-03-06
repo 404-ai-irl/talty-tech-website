@@ -1,9 +1,9 @@
-import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { services, serviceCategories, servicesIconMap } from '../data';
 import {
   H1,
+  H2,
   P
 } from '@/components/ui/typography';
 
@@ -62,13 +62,13 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           return (
             <div
               key={index}
-              className="border border-slate-200 dark:border-slate-700 rounded-lg p-6 hover:shadow-md transition-shadow"
+              className="border border-slate-200 dark:border-slate-700 rounded-lg P-6 hover:shadow-md transition-shadow"
             >
               <div className="flex items-center mb-4">
                 {Icon && <Icon className="h-6 w-6 mr-2 text-blue-600" />}
-                <h2 className="text-xl font-semibold">{service.title}</h2>
+                <H2 className="text-xl font-semibold">{service.title}</H2>
               </div>
-              <p className="text-slate-600 dark:text-slate-300 mb-4">{service.description}</p>
+              <P className="text-slate-600 dark:text-slate-300 mb-4">{service.description}</P>
               <Link
                 href={service.href}
                 className="text-blue-600 hover:text-blue-800 font-medium"

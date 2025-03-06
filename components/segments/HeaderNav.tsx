@@ -18,7 +18,7 @@ export default function HeaderNav() {
         <NavigationMenuList>
           {/* About Section */}
           <NavigationMenuItem>
-            <Link href="/about" className="block p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
+            <Link href="/about" className="block P-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
               About
             </Link>
           </NavigationMenuItem>
@@ -27,12 +27,12 @@ export default function HeaderNav() {
           <NavigationMenuItem>
             <NavigationMenuTrigger>Services</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid gap-3 p-4 w-[200px]">
+              <ul className="grid gap-3 P-4 w-[200px]">
                 {serviceCategories.map((category, index) => (
                   <li key={index}>
                     <Link
                       href={category.href}
-                      className="block p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded"
+                      className="block P-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded"
                     >
                       {category.name}
                     </Link>
@@ -44,7 +44,7 @@ export default function HeaderNav() {
 
           {/* Contact Section */}
           <NavigationMenuItem>
-            <Link href="/contact" className="block p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
+            <Link href="/contact" className="block P-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded">
               Contact
             </Link>
           </NavigationMenuItem>

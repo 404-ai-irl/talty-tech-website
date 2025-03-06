@@ -57,7 +57,7 @@ export default function LeadForm() {
     <Card className="w-full max-w-lg mx-auto">
       <CardHeader>
         <CardTitle className="text-2xl">Contact Us</CardTitle>
-        <CardDescription>Fill out the form below and we'll get back to you as soon as possible.</CardDescription>
+        <CardDescription>Fill out the form below and we&apos;ll get back to you as soon as possible.</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>

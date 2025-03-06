@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { services, serviceCategories } from './data';
+import { services } from './data';
 import {
   H1,
   H2,
@@ -43,7 +43,7 @@ export default function ServicesPage() {
         <H2 className="mb-4">Development Services</H2>
         <P>
           From concept to deployment, our development team builds robust, scalable solutions
-          using the latest technologies and best practices to ensure your project's success.
+          using the latest technologies and best practices to ensure your project&apos;s success.
         </P>
       </section>
       

@@ -17,7 +17,8 @@ The Talty Tech website provides information about our services, company, and way
 - **UI Library**: [React](https://react.dev) 19.0.0
 - **Styling**: [Tailwind CSS](https://tailwindcss.com) 4.x
 - **Language**: [TypeScript](https://www.typescriptlang.org/) 5.x
-- **UI Components**: 
+- **Database**: [Supabase](https://supabase.com) for PostgreSQL database
+- **UI Components**:
   - [Radix UI](https://www.radix-ui.com/) for accessible components
   - Custom UI components built with Tailwind
 - **Form Handling**: react-hook-form with zod validation
@@ -55,6 +56,25 @@ The site uses Turbopack for faster development builds.
   - `ui/` - UI components (buttons, cards, etc.)
 - `lib/` - Utility functions
 - `public/` - Static assets
+- `db/` - Database configuration and models
+
+## Database Configuration
+
+This project uses [Supabase](https://supabase.com) as its PostgreSQL database provider. The database connection is configured using environment variables stored in `.env.development.local` for local development and in the Vercel dashboard for production.
+
+For detailed information about the database setup, connection methods, security practices, and usage examples, see the [Database Documentation](./docs/DATABASE.md).
+
+### Environment Variables
+
+The following environment variables are required for database connection:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+POSTGRES_URL=your-postgres-connection-string
+POSTGRES_PRISMA_URL=your-postgres-prisma-connection-string
+POSTGRES_URL_NON_POOLING=your-postgres-non-pooling-connection-string
+```
 
 ## Deployment to Vercel
 

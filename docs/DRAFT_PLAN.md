@@ -398,9 +398,9 @@ export function HeroSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <H1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Transform Your Business with AI Solutions
-            </h1>
+            </H1>
             <p className="text-xl mb-8 text-primary-100">
               Custom AI software development that drives innovation and real business results.
             </p>

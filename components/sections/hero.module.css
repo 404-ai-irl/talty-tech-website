@@ -1,19 +1,10 @@
 /* Hero section specific styles */
 
-:root {
-  --primary-rgb: 52, 52, 52; /* Default dark color in RGB format */
-}
-
-.dark {
-  --primary-rgb: 250, 250, 250; /* Light color for dark mode in RGB format */
-}
-
 .gradientText {
   background: linear-gradient(90deg, var(--primary) 0%, var(--chart-1) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
 }
 
 /* Radial gradient background */

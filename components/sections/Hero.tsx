@@ -6,7 +6,45 @@ import { Button } from "@/components/ui/button";
 import styles from "./hero.module.css";
 import { Badge } from "@/components/ui/badge";
 
-export default function Hero() {
+// Define feature item type for better type safety
+interface FeatureItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+// Feature items array - extracted for better readability
+const FEATURE_ITEMS: FeatureItem[] = [
+  {
+    icon: "🌐",
+    title: "Web Development",
+    description: "Custom websites and applications built with modern technologies",
+  },
+  {
+    icon: "🤖",
+    title: "AI Integration",
+    description: "Smart solutions that automate and enhance your business processes",
+  },
+  {
+    icon: "📱",
+    title: "Responsive Design",
+    description: "Seamless experiences across all devices and screen sizes",
+  },
+];
+
+// Feature card component for better reusability
+const FeatureCard: React.FC<{ feature: FeatureItem }> = ({ feature }) => (
+  <div
+    className={`bg-card/50 backdrop-blur-sm p-6 rounded-lg border border-border ${styles.cardHover}`}
+  >
+    <div className="text-3xl mb-3">{feature.icon}</div>
+    <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+    <P className="text-muted-foreground">{feature.description}</P>
+  </div>
+);
+
+// Main Hero component with proper return type
+const Hero: React.FC = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-background to-secondary/20 dark:from-background dark:to-secondary/10">
       {/* Background pattern */}
@@ -16,19 +54,18 @@ export default function Hero() {
       </div>
 
       <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32">
+        {/* Main content section - converted to flexbox */}
         <div
-          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${styles.heroGrid}`}
+          className={`flex flex-col lg:flex-row gap-12 items-center ${styles.heroGrid}`}
         >
           {/* Content */}
           <div
-            className={`z-10 space-y-6 ${styles.heroContent} ${styles.fadeIn}`}
+            className={`z-10 space-y-6 flex-1 ${styles.heroContent} ${styles.fadeIn}`}
           >
             <div className={styles.fadeInDelay1}>
-              <P>
-                <Badge variant="secondary">
-                  Texas-based Web Development & AI Solutions
-                </Badge>
-              </P>
+              <Badge variant="secondary">
+                <P>Texas-based Web Development & AI Solutions</P>
+              </Badge>
             </div>
 
             <H1 className="!border-none !mt-0">
@@ -64,7 +101,7 @@ export default function Hero() {
 
           {/* WatchTower Visual */}
           <div
-            className={`relative z-10 flex justify-center lg:justify-end ${styles.heroVisual} ${styles.scaleIn}`}
+            className={`relative z-10 flex justify-center flex-1 ${styles.heroVisual} ${styles.scaleIn}`}
           >
             <div className="relative">
               {/* Glowing background effect */}
@@ -85,41 +122,17 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Feature highlights */}
+        {/* Feature highlights - keeping grid for this section as it works well for cards */}
         <div
           className={`grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 lg:mt-24 ${styles.fadeInDelay4}`}
         >
-          {[
-            {
-              icon: "🌐",
-              title: "Web Development",
-              description:
-                "Custom websites and applications built with modern technologies",
-            },
-            {
-              icon: "🤖",
-              title: "AI Integration",
-              description:
-                "Smart solutions that automate and enhance your business processes",
-            },
-            {
-              icon: "📱",
-              title: "Responsive Design",
-              description:
-                "Seamless experiences across all devices and screen sizes",
-            },
-          ].map((feature, index) => (
-            <div
-              key={index}
-              className={`bg-card/50 backdrop-blur-sm p-6 rounded-lg border border-border ${styles.cardHover}`}
-            >
-              <div className="text-3xl mb-3">{feature.icon}</div>
-              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
-            </div>
+          {FEATURE_ITEMS.map((feature, index) => (
+            <FeatureCard key={index} feature={feature} />
           ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Hero;
