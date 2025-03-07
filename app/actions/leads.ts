@@ -1,7 +1,7 @@
 "use server"
 
 import { supabase } from "@/lib/supabase"
-import { leadFormSchema, type LeadFormValues } from "@/db/leadSchema"
+import { leadFormSchema, type LeadFormValues } from "@/lib/schemas/lead-schema"
 
 export async function submitLeadForm(formData: LeadFormValues) {
   try {

@@ -1,5 +1,3 @@
-export enum ServiceCategoryEnum {
-    CONSULTING = "Consulting",
-    DEVELOPMENT = "Development",
-  }
-  
+import type { Database } from "./db.types"
+
+export type ServiceCategoryEnum = Database["public"]["Enums"]["service_category"]

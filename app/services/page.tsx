@@ -3,8 +3,17 @@ import { getServices } from "@/app/actions/services"
 import { ServiceCard } from "@/components/service-card"
 import { ServiceCategoryFilter } from "@/components/service-category-filter"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { ServiceCategoryEnum } from "@/lib/types/index"
+import { use } from "react"
 
-export default function ServicesPage() {
+interface ServicesPageProps {
+  searchParams: Promise<{ category?: string }>
+}
+
+export default function ServicesPage({ searchParams }: ServicesPageProps) {
+  // For a synchronous component, use React's 'use' function to unwrap the Promise
+  const params = use(searchParams)
+  
   return (
     <div className="container py-12 mx-auto">
       <div className="flex flex-col gap-6">
@@ -16,16 +25,20 @@ export default function ServicesPage() {
         </div>
 
         <Suspense fallback={<ServicesSkeleton />}>
-          <ServicesContent />
+          <ServicesContent categoryParam={params.category as ServiceCategoryEnum | undefined} />
         </Suspense>
       </div>
     </div>
   )
 }
 
-async function ServicesContent() {
+interface ServicesContentProps {
+  categoryParam?: ServiceCategoryEnum
+}
+
+async function ServicesContent({ categoryParam }: ServicesContentProps) {
   try {
-    const services = await getServices()
+    const services = await getServices(categoryParam || null)
 
     if (services.length === 0) {
       return (

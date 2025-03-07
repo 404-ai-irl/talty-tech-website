@@ -38,7 +38,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
       </CardHeader>
       <CardFooter className="mt-auto pt-4">
         <Button asChild variant="outline" className="w-full">
-          <Link href={service.href}>Learn more</Link>
+          <Link href={`/services/${service["url-slug"]}`}>Learn more</Link>
         </Button>
       </CardFooter>
     </Card>

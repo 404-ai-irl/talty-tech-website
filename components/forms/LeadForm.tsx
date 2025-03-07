@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { leadFormSchema, type LeadFormValues } from "@/db/leadSchema"
-import { submitLeadForm } from "@/app/actions/leads"
+import { CheckCircle, AlertCircle } from "lucide-react"
+
 
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -12,7 +12,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { CheckCircle, AlertCircle } from "lucide-react"
+
+import { submitLeadForm } from "@/app/actions/leads"
+import { leadFormSchema, type LeadFormValues } from "@/lib/schemas/lead-schema"
 
 export default function LeadForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)

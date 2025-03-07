@@ -1,4 +1,11 @@
 import { H1, H2, P } from "@/components/ui/typography"
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Talty Tech",
+  description: "Learn more about Talty Tech, a Texas-based web development and AI company.",
+};
+
 export default function AboutPage() {
   return (
     <div className="container mx-auto py-12 px-4">
@@ -12,9 +19,7 @@ export default function AboutPage() {
           to create digital experiences that drive business growth and enhance user engagement.
         </P>
         <P>
-          We&apos;re committed to delivering high-quality, scalable solutions that address the unique
-          challenges and opportunities of our clients, helping them thrive in an increasingly 
-          digital world.
+        At Talty Tech, our mission is to lead digital transformation by developing innovative solutions to complex business challenges, making AI, business automation, and modern web development accessible, actionable, and impactful.
         </P>
       </section>
       
@@ -30,15 +35,12 @@ export default function AboutPage() {
           <div className="md:w-2/3">
             <h3 className="text-xl font-medium mb-2">John Talty</h3>
             <P className="mb-4">
-              John Talty founded Talty Tech with a vision to bring enterprise-level technology 
-              solutions to businesses of all sizes in Texas. With over 15 years of experience 
-              in software development and a deep understanding of business needs, John has 
-              built a company that combines technical expertise with a client-first approach.
+            Andrew is a passionate tech enthusiast who started coding in 2016. He learned programming through self-study and formal education, including Full-Stack Web Development at SMU and Computer Science at the University of North Texas.
             </P>
+            <P>One of Andrew&apos;s key projects was creating a wholesale real estate business platform from the ground up, featuring automated lead generation. He uses his skills to combine technology with real-world business needs. He has worked on many web projects, from online stores to interactive web apps.</P>
             <P>
-              Prior to founding Talty Tech, John worked with several Fortune 500 companies, 
-              leading digital transformation initiatives and developing innovative solutions 
-              to complex business challenges.
+            Now, Andrew is launching Talty Tech, a business dedicated to bringing modern web development and AI solutions to local Texas businesses.
+              
             </P>
           </div>
         </div>

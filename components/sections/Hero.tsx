@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import WatchTower from "@/components/segments/WatchTower/WatchTower";
+import WatchTower from "@/components/segments/watchtower-animation/WatchTower";
 import { H1, P, Lead } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import styles from "./hero.module.css";
@@ -48,10 +48,10 @@ const Hero: React.FC = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-background to-secondary/20 dark:from-background dark:to-secondary/10">
       {/* Background pattern */}
-      <div className="absolute inset-0 z-0 opacity-30 dark:opacity-20">
+      {/* <div className="absolute inset-0 z-0 opacity-30 dark:opacity-20">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-10 right-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4 py-16 md:py-24 lg:py-32">
         {/* Main content section - converted to flexbox */}

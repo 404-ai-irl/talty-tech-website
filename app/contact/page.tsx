@@ -1,5 +1,5 @@
 import LeadForm from '@/components/forms/LeadForm';
-import { H1, H2, P } from '@/components/ui/typography';
+import { H1, H2, H3, P } from '@/components/ui/typography';
 
 export default function ContactPage() {
   return (
@@ -15,14 +15,18 @@ export default function ContactPage() {
           
           <div className="space-y-4">
             <div>
-              <h3 className="font-medium">Email</h3>
-              <P>contact@taltytech.com</P>
+              <H3>Email</H3>
+              <P>andrew@taltytech.com</P> 
             </div>
-            
             <div>
-              <h3 className="font-medium">Location</h3>
+              <H3>Phone</H3>
+              <P>(469) 797-467</P> 
+            </div>
+            <div>
+              <H3>Location</H3>
               <P>Talty, Texas</P>
             </div>
+
           </div>
         </div>
         

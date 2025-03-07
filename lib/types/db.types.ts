@@ -39,51 +39,33 @@ export type Database = {
         }
         Relationships: []
       }
-      service_categories: {
-        Row: {
-          href: string
-          id: number
-          name: Database["public"]["Enums"]["service_category"]
-        }
-        Insert: {
-          href: string
-          id?: number
-          name: Database["public"]["Enums"]["service_category"]
-        }
-        Update: {
-          href?: string
-          id?: number
-          name?: Database["public"]["Enums"]["service_category"]
-        }
-        Relationships: []
-      }
       services: {
         Row: {
           category: Database["public"]["Enums"]["service_category"]
           created_at: string | null
           description: string
-          href: string
           icon: string
           id: number
           title: string
+          "url-slug": string
         }
         Insert: {
           category: Database["public"]["Enums"]["service_category"]
           created_at?: string | null
           description: string
-          href: string
           icon: string
           id?: number
           title: string
+          "url-slug": string
         }
         Update: {
           category?: Database["public"]["Enums"]["service_category"]
           created_at?: string | null
           description?: string
-          href?: string
           icon?: string
           id?: number
           title?: string
+          "url-slug"?: string
         }
         Relationships: []
       }
@@ -95,7 +77,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      service_category: "Consulting" | "Development"
+      service_category: "Consulting" | "Development" | "Education"
     }
     CompositeTypes: {
       [_ in never]: never

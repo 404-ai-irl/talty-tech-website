@@ -1,4 +1,4 @@
-import HeaderNav from '@/components/segments/HeaderNav'
+import HeaderNav from '@/components/segments/header-nav'
 import { P } from '../ui/typography'
 import Link from 'next/link'
 

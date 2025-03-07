@@ -1,20 +1,15 @@
 "use server"
 
-import { createClient } from "@/lib/supabase/server"
-import type { Database } from "@/lib/types/database.types"
-import type { ServiceCategoryEnum } from "@/lib/types"
+import { createClient } from "@/lib/supabase/ssr"
+import type { Database } from "@/lib/types/db.types"
+import { ServiceCategoryEnum } from "@/lib/types"
 
 export type Service = Database["public"]["Tables"]["services"]["Row"]
-export type ServiceWithCategory = Service & {
-  service_category: Database["public"]["Tables"]["service_categories"]["Row"]
-}
 
-export async function getServices(category?: ServiceCategoryEnum): Promise<Service[]> {
-  const supabase = createClient()
+export async function getServices(category?: ServiceCategoryEnum | null): Promise<Service[]> {
+  const supabase = await createClient()
 
-  let query = supabase.from("services").select(`
-    *
-  `)
+  let query = supabase.from("services").select("*")
 
   if (category) {
     query = query.eq("category", category)
@@ -30,23 +25,28 @@ export async function getServices(category?: ServiceCategoryEnum): Promise<Servi
   return data || []
 }
 
-export async function getServiceCategories() {
-  const supabase = createClient()
+export async function getServiceCategories(): Promise<ServiceCategoryEnum[]> {
+  const supabase = await createClient()
 
-  const { data, error } = await supabase.from("service_categories").select("*").order("name")
+  const { data, error } = await supabase
+    .from("services")
+    .select("category")
+    .order("category")
 
   if (error) {
     console.error("Error fetching service categories:", error)
     throw new Error("Failed to fetch service categories")
   }
 
-  return data || []
+  // Extract unique categories
+  const categories = [...new Set(data.map(service => service.category))] as ServiceCategoryEnum[]
+  return categories
 }
 
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
-  const supabase = createClient()
+  const supabase = await createClient()
 
-  const { data, error } = await supabase.from("services").select("*").eq("href", `/services/${slug}`).single()
+  const { data, error } = await supabase.from("services").select("*").eq("url-slug", slug).single()
 
   if (error) {
     if (error.code === "PGRST116") {
@@ -58,4 +58,3 @@ export async function getServiceBySlug(slug: string): Promise<Service | null> {
 
   return data
 }
-
