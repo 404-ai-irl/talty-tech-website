@@ -20,7 +20,7 @@ export default function ContactPage() {
             </div>
             <div>
               <H3>Phone</H3>
-              <P>(469) 797-467</P> 
+              <P>(469)797-4677</P> 
             </div>
             <div>
               <H3>Location</H3>

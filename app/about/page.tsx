@@ -1,4 +1,6 @@
 import { H1, H2, P } from "@/components/ui/typography"
+import Image from "next/image";
+import andrew from "@/public/tt-owner-picure.jpeg"
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -24,16 +26,16 @@ export default function AboutPage() {
       </section>
       
       <section id="founder" className="mb-12">
-        <H2 className="text-2xl font-semibold mb-4">Our Founder</H2>
+          <H2>Our Founder</H2>
         <div className="flex flex-col md:flex-row gap-8">
           <div className="md:w-1/3">
             {/* Placeholder for founder image */}
             <div className="bg-slate-200 w-full aspect-square rounded-md flex items-center justify-center">
-              <span className="text-slate-500">Founder Image</span>
+              <Image src={andrew} alt="Andrew Thompson"  />
             </div>
           </div>
           <div className="md:w-2/3">
-            <h3 className="text-xl font-medium mb-2">John Talty</h3>
+            <h3 className="text-xl font-medium mb-2">Andrew Thompson</h3>
             <P className="mb-4">
             Andrew is a passionate tech enthusiast who started coding in 2016. He learned programming through self-study and formal education, including Full-Stack Web Development at SMU and Computer Science at the University of North Texas.
             </P>

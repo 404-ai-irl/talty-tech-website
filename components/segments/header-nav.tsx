@@ -4,7 +4,9 @@ import Link from "next/link";
 import {
   NavigationMenu,
   NavigationMenuItem,
+  NavigationMenuLink,
   NavigationMenuList,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -15,26 +17,28 @@ export default function HeaderNav() {
         <NavigationMenuList>
           {/* About Section */}
           <NavigationMenuItem>
-            <Link
-              href="/about"
-              className="block P-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded"
-            >
-              About
+            <Link href="/about" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                About
+              </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
 
           {/* Services Section */}
           <NavigationMenuItem>
-            <Link href="/services">Services</Link>
+            <Link href="/services" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Services
+              </NavigationMenuLink>
+            </Link>
           </NavigationMenuItem>
 
           {/* Contact Section */}
           <NavigationMenuItem>
-            <Link
-              href="/contact"
-              className="block P-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded"
-            >
-              Contact
+            <Link href="/contact" legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Contact
+              </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
         </NavigationMenuList>
