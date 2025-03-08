@@ -1,4 +1,4 @@
-import HeaderNav from '@/components/segments/header-nav'
+import HeaderNav from '@/components/header-nav'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import WatchTower from "@/components/segments/watchtower-animation/WatchTower";
+import WatchTower from "@/components/watchtower-animation/WatchTower";
 import { H1, P, Lead } from "@/components/ui/typography";
 import { Button } from "@/components/ui/button";
 import styles from "./hero.module.css";
