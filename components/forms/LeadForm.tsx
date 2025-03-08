@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
-import { submitLeadForm } from "@/app/(frontend)/actions/leads"
+import { submitLeadForm } from "@/app/actions/leads"
 import { leadFormSchema, type LeadFormValues } from "@/lib/schemas/lead-schema"
 
 export default function LeadForm() {

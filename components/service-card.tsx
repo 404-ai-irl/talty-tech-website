@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Code, ShoppingCart, Layers, Cog, Brain, Search, Lightbulb, type LucideIcon } from "lucide-react"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import type { Service } from "@/app/(frontend)/actions/services"
+import type { Service } from "@/app/actions/services"
 
 // Icon mapping
 const servicesIconMap: Record<string, LucideIcon> = {
