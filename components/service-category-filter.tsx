@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { ServiceCategoryEnum } from "@/lib/types/index"
 import { Button } from "@/components/ui/button"
-import { getServiceCategories } from "@/app/actions/services"
+import { getServiceCategories } from "@/app/(frontend)/actions/services"
 
 export function ServiceCategoryFilter() {
   const router = useRouter()
