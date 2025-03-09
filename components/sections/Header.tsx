@@ -1,6 +1,7 @@
-import HeaderNav from '@/components/header-nav'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+
+import HeaderNav from '@/components/header-nav-menu'
 
 export default function Header() {
   return (

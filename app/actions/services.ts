@@ -1,6 +1,6 @@
 "use server"
 
-import { createClient } from "@/lib/supabase/ssr"
+import { createClient } from "@/utils/supabase/ssr"
 import type { Database } from "@/lib/types/db.types"
 import { ServiceCategoryEnum } from "@/lib/types"
 
