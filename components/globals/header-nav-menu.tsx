@@ -10,6 +10,21 @@ import {
 } from "@/components/ui/navigation-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 
+const navItems = [
+  {
+    title: "About",
+    href: "/about",
+    
+  },
+  {
+    title: "Services",
+    href: "/services",
+  },
+  {
+    title: "Contact",
+    href: "/contact",
+  }
+]
 export default function HeaderNav() {
   return (
     <div className="flex items-center gap-4">

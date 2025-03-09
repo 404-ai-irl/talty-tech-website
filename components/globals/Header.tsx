@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 
-import HeaderNav from '@/components/header-nav-menu'
+import HeaderNav from './header-nav-menu'
 
 export default function Header() {
   return (

@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -5,8 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "./globals.css";
-import Header from "@/components/sections/Header";
-import React from "react";
+import Header from "@/components/globals/Header";
+import Footer from "@/components/globals/Footer";
 
 // Font Settings for Theme
 const geistSans = Geist({
@@ -50,9 +51,10 @@ export default function RootLayout({
         >
           <Header />
           {children}
+          <Footer />
         </ThemeProvider>
         <Analytics />
-	<SpeedInsights />
+        <SpeedInsights />
       </body>
     </html>
   );
