@@ -68,7 +68,8 @@ For detailed information about the database setup, connection methods, security 
 
 The following environment variables are required for database connection:
 
-```
+```shell
+
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 POSTGRES_URL=your-postgres-connection-string
@@ -83,6 +84,7 @@ POSTGRES_URL_NON_POOLING=your-postgres-non-pooling-connection-string
 1. **Create a Vercel Account**: If you don't have one already, sign up at [vercel.com](https://vercel.com)
 
 2. **Install Vercel CLI** (optional):
+
    ```bash
    pnpm install -g vercel
    ```
@@ -94,6 +96,7 @@ POSTGRES_URL_NON_POOLING=your-postgres-non-pooling-connection-string
    - Deploy
 
 4. **Alternative: Deploy from CLI**:
+
    ```bash
    vercel
    ```

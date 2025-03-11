@@ -6,8 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "./globals.css";
-import Header from "@/components/globals/Header";
-import Footer from "@/components/globals/Footer";
+import Header from "@/components/globals/header";
+import Footer from "@/components/globals/footer";
 
 // Font Settings for Theme
 const geistSans = Geist({

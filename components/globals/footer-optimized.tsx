@@ -18,7 +18,7 @@ interface FooterLinkProps {
 const FooterLink: React.FC<FooterLinkProps> = ({ href, children, className }) => (
   <Link 
     href={href} 
-    className={`text-muted-foreground transition-colors hover:text-primary ${className || ''}`}
+    className={`text-muted-foreground transition-colors hover:text-foreground ${className || ''}`}
   >
     {children}
   </Link>
@@ -65,8 +65,8 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-background border-t">
-      <div className="container max-w-7xl mx-auto px-4 py-12 sm:px-6 md:px-6 md:py-16 lg:px-8 lg:py-20">
+    <footer className="bg-muted/40 border-t">
+      <div className="container px-4 py-12 md:px-6 md:py-16 lg:py-20">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
@@ -161,7 +161,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-12 border-t border-border pt-6">
+        <div className="mt-12 border-t pt-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs text-muted-foreground">
               &copy; {currentYear} Talty Tech. All rights reserved.
