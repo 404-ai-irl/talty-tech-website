@@ -1,38 +1,52 @@
 import { Suspense } from "react"
+import { getServiceCategoryBySlug } from "@/app/actions/serviceCategories"
 import { getServices } from "@/app/actions/services"
 import { ServiceCard } from "@/components/service-card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { notFound } from "next/navigation"
 
-export default function ServicesPage() {
+interface CategoryPageProps {
+  params: {
+    slug: string
+  }
+}
+
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const category = await getServiceCategoryBySlug(params.slug)
+  
+  if (!category) {
+    notFound()
+  }
+  
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">Our Services</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{category.category_name}</h1>
         <p className="text-muted-foreground mt-2">
-          We offer a range of services to help businesses leverage modern technology, AI, and automation.
+          Explore our specialized services in {category.category_name.toLowerCase()}.
         </p>
       </div>
-
+      
       <Suspense fallback={<ServicesSkeleton />}>
-        <AllServices />
+        <CategoryServices categorySlug={category.category_slug} />
       </Suspense>
     </div>
   )
 }
 
-async function AllServices() {
+async function CategoryServices({ categorySlug }: { categorySlug: string }) {
   try {
-    const services = await getServices()
-
+    const services = await getServices(categorySlug)
+    
     if (services.length === 0) {
       return (
         <Alert>
           <AlertTitle>No services found</AlertTitle>
-          <AlertDescription>There are currently no services available. Please check back later.</AlertDescription>
+          <AlertDescription>There are currently no services available in this category. Please check back later.</AlertDescription>
         </Alert>
       )
     }
-
+    
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {services.map((service) => (
@@ -54,7 +68,7 @@ async function AllServices() {
 function ServicesSkeleton() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {[...Array(6)].map((_, i) => (
+      {[...Array(4)].map((_, i) => (
         <div key={i} className="h-64 bg-muted animate-pulse rounded-lg" />
       ))}
     </div>

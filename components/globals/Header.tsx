@@ -95,34 +95,89 @@ const Header: React.FC = () => {
           </NavItem>
 
           <NavItem text="Services">
-            <DropdownMenuContent align="start" className="w-[280px] p-4">
-              <div className="space-y-3">
-                <h3 
-                  className="text-sm font-medium text-muted-foreground"
-                  id="services-navigation"
-                >
-                  OUR SERVICES
-                </h3>
-                <ul 
-                  className="space-y-3"
-                  aria-labelledby="services-navigation"
-                >
-                  <li>
-                    <Link href="/services/developing" className="text-sm transition-colors hover:text-primary">
-                      Developing
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/services/consulting" className="text-sm transition-colors hover:text-primary">
-                      Consulting
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/services/training" className="text-sm transition-colors hover:text-primary">
-                      Training & Education
-                    </Link>
-                  </li>
-                </ul>
+            <DropdownMenuContent align="start" className="w-[500px] p-6">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-3">
+                  <h3 
+                    className="text-sm font-medium text-muted-foreground"
+                    id="services-navigation-categories"
+                  >
+                    SERVICE CATEGORIES
+                  </h3>
+                  <ul 
+                    className="space-y-3"
+                    aria-labelledby="services-navigation-categories"
+                  >
+                    <li>
+                      <Link href="/services/custom-ai" className="text-sm transition-colors hover:text-primary">
+                        Custom AI & Machine Learning Solutions
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/services/automation" className="text-sm transition-colors hover:text-primary">
+                        Business Process Automation
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/services/web-dev" className="text-sm transition-colors hover:text-primary">
+                        Custom Web Development Solutions
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/services/lead-funnels" className="text-sm transition-colors hover:text-primary">
+                        High-Converting Lead Funnels
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/services/consulting" className="text-sm transition-colors hover:text-primary">
+                        Expert IT Consulting & Strategy
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+                <div className="space-y-3">
+                  <h3 
+                    className="text-sm font-medium text-muted-foreground"
+                    id="services-navigation-specific"
+                  >
+                    SPECIFIC SERVICES
+                  </h3>
+                  <ul 
+                    className="space-y-3"
+                    aria-labelledby="services-navigation-specific"
+                  >
+                    <li>
+                      <Link href="/services/ai-assistants" className="text-sm transition-colors hover:text-primary">
+                        AI Assistants
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/services/process-automation" className="text-sm transition-colors hover:text-primary">
+                        Process Automation
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/services/web-development" className="text-sm transition-colors hover:text-primary">
+                        Website Development
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/services/lead-generation" className="text-sm transition-colors hover:text-primary">
+                        Lead Generation
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/services/technology-consulting" className="text-sm transition-colors hover:text-primary">
+                        Technology Consulting
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/services/website-enhancement" className="text-sm transition-colors hover:text-primary">
+                        Website Enhancement
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </DropdownMenuContent>
           </NavItem>
@@ -194,22 +249,69 @@ const Header: React.FC = () => {
                     <div className="mt-3 mb-2 pl-4">
                       <h3 
                         className="text-sm font-medium text-muted-foreground mb-3"
-                        id="mobile-services-nav"
-                      >OUR SERVICES</h3>
-                      <ul className="space-y-3" aria-labelledby="mobile-services-nav">
+                        id="mobile-services-categories"
+                      >SERVICE CATEGORIES</h3>
+                      <ul className="space-y-3 mb-4" aria-labelledby="mobile-services-categories">
                         <li>
-                          <Link href="/services/developing" className="text-sm hover:text-primary">
-                            Developing
+                          <Link href="/services/custom-ai" className="text-sm hover:text-primary">
+                            Custom AI & Machine Learning Solutions
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/services/automation" className="text-sm hover:text-primary">
+                            Business Process Automation
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/services/web-dev" className="text-sm hover:text-primary">
+                            Custom Web Development Solutions
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/services/lead-funnels" className="text-sm hover:text-primary">
+                            High-Converting Lead Funnels
                           </Link>
                         </li>
                         <li>
                           <Link href="/services/consulting" className="text-sm hover:text-primary">
-                            Consulting
+                            Expert IT Consulting & Strategy
+                          </Link>
+                        </li>
+                      </ul>
+                      
+                      <h3 
+                        className="text-sm font-medium text-muted-foreground mb-3"
+                        id="mobile-services-specific"
+                      >SPECIFIC SERVICES</h3>
+                      <ul className="space-y-3" aria-labelledby="mobile-services-specific">
+                        <li>
+                          <Link href="/services/ai-assistants" className="text-sm hover:text-primary">
+                            AI Assistants
                           </Link>
                         </li>
                         <li>
-                          <Link href="/services/training" className="text-sm hover:text-primary">
-                            Training & Education
+                          <Link href="/services/process-automation" className="text-sm hover:text-primary">
+                            Process Automation
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/services/web-development" className="text-sm hover:text-primary">
+                            Website Development
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/services/lead-generation" className="text-sm hover:text-primary">
+                            Lead Generation
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/services/technology-consulting" className="text-sm hover:text-primary">
+                            Technology Consulting
+                          </Link>
+                        </li>
+                        <li>
+                          <Link href="/services/website-enhancement" className="text-sm hover:text-primary">
+                            Website Enhancement
                           </Link>
                         </li>
                       </ul>

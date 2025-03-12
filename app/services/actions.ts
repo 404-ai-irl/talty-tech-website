@@ -2,25 +2,18 @@
 
 import { createClient } from "@/utils/supabase/ssr"
 import type { Database } from "@/lib/types/db.types"
-import { ServiceBenefit, ServiceProcessStep } from "@/lib/types"
-import { ServiceCategory } from "./serviceCategories"
+import { ServiceCategoryEnum, ServiceBenefit, ServiceProcessStep } from "@/lib/types"
 
-export type Service = Database["public"]["Tables"]["services"]["Row"] & {
-  service_categories?: ServiceCategory
-}
-
+export type Service = Database["public"]["Tables"]["services"]["Row"]
 export type ServiceDetailsRow = Database["public"]["Tables"]["service_details"]["Row"]
 
-export async function getServices(categorySlug?: string | null): Promise<Service[]> {
+export async function getServices(category?: ServiceCategoryEnum | null): Promise<Service[]> {
   const supabase = await createClient()
 
-  let query = supabase.from("services").select(`
-    *,
-    service_categories(*)
-  `)
+  let query = supabase.from("services").select("*")
 
-  if (categorySlug) {
-    query = query.eq("service_categories.category_slug", categorySlug)
+  if (category) {
+    query = query.eq("category", category)
   }
 
   const { data, error } = await query.order("title")
@@ -33,13 +26,28 @@ export async function getServices(categorySlug?: string | null): Promise<Service
   return data || []
 }
 
+export async function getServiceCategories(): Promise<ServiceCategoryEnum[]> {
+  const supabase = await createClient()
+
+  const { data, error } = await supabase
+    .from("services")
+    .select("category")
+    .order("category")
+
+  if (error) {
+    console.error("Error fetching service categories:", error)
+    throw new Error("Failed to fetch service categories")
+  }
+
+  // Extract unique categories
+  const categories = [...new Set(data.map(service => service.category))] as ServiceCategoryEnum[]
+  return categories
+}
+
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
   const supabase = await createClient()
 
-  const { data, error } = await supabase.from("services").select(`
-    *,
-    service_categories(*)
-  `).eq("url-slug", slug).single()
+  const { data, error } = await supabase.from("services").select("*").eq("url-slug", slug).single()
 
   if (error) {
     if (error.code === "PGRST116") {
@@ -59,7 +67,7 @@ export type ServiceWithDetails = Service & {
     related_services: number[];
   } | null;
   related_services_data: Service[];
-}
+};
 
 export async function getServiceWithDetailsBySlug(slug: string): Promise<ServiceWithDetails | null> {
   const supabase = await createClient()
@@ -67,10 +75,7 @@ export async function getServiceWithDetailsBySlug(slug: string): Promise<Service
   // Fetch the service by slug
   const { data: service, error: serviceError } = await supabase
     .from("services")
-    .select(`
-      *,
-      service_categories(*)
-    `)
+    .select("*")
     .eq("url-slug", slug)
     .single()
 
@@ -99,10 +104,7 @@ export async function getServiceWithDetailsBySlug(slug: string): Promise<Service
   if (details && details.related_services && details.related_services.length > 0) {
     const { data: relatedServices, error: relatedError } = await supabase
       .from("services")
-      .select(`
-        *,
-        service_categories(*)
-      `)
+      .select("*")
       .in("id", details.related_services)
 
     if (!relatedError && relatedServices) {
@@ -112,23 +114,15 @@ export async function getServiceWithDetailsBySlug(slug: string): Promise<Service
 
   // If no related services were specified or found, get services from the same category as fallback
   if (related_services_data.length === 0) {
-    try {
-      const { data: categoryServices, error: categoryError } = await supabase
-        .from("services")
-        .select(`
-          *,
-          service_categories(*)
-        `)
-        .eq("category_id", service.category_id)
-        .neq("id", service.id)
-        .limit(3)
+    const { data: categoryServices, error: categoryError } = await supabase
+      .from("services")
+      .select("*")
+      .eq("category", service.category)
+      .neq("id", service.id)
+      .limit(3)
 
-      if (!categoryError && categoryServices && categoryServices.length > 0) {
-        related_services_data = categoryServices
-      }
-    } catch (error) {
-      console.error("Error fetching related services by category:", error)
-      // Continue even if this fails
+    if (!categoryError && categoryServices) {
+      related_services_data = categoryServices
     }
   }
 
