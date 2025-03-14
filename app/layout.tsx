@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import "./globals.css";
-import Header from "@/components/sections/Header";
+import Header from "@/components/header/global-header";
 import React from "react";
 
 // Font Settings for Theme

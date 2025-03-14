@@ -3,9 +3,11 @@
 import Link from "next/link";
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -17,11 +19,24 @@ export default function HeaderNav() {
         <NavigationMenuList>
           {/* About Section */}
           <NavigationMenuItem>
-            <Link href="/about" legacyBehavior passHref>
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+          <NavigationMenuTrigger className={navigationMenuTriggerStyle()}>
+            <Link href="/about"> 
                 About
-              </NavigationMenuLink>
             </Link>
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink>
+              <Link href="/about" legacyBehavior passHref>
+                The Founder
+              </Link>
+            </NavigationMenuLink>
+            <NavigationMenuLink>
+              <Link href="/team" >
+                Our Team
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuContent>
+
           </NavigationMenuItem>
 
           {/* Services Section */}
@@ -44,7 +59,6 @@ export default function HeaderNav() {
         </NavigationMenuList>
       </NavigationMenu>
 
-      <ThemeToggle />
     </div>
   );
 }
