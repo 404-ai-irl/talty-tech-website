@@ -124,6 +124,54 @@ export type ServiceWithDetails = Service & {
   related_services_data: Service[];
 }
 
+export async function getServicesByCategoryWithLimit(limit: number = 5): Promise<{category: ServiceCategory, services: Service[]}[]> {
+  const supabase = await createClient();
+
+  try {
+    // Get all categories
+    const { data: categories, error: categoriesError } = await supabase
+      .from("service_categories")
+      .select("*")
+      .order("category_name");
+
+    if (categoriesError) {
+      console.error("Error fetching categories:", categoriesError);
+      throw new Error("Failed to fetch categories");
+    }
+
+    if (!categories || categories.length === 0) {
+      return [];
+    }
+
+    // Get services for each category
+    const servicesWithCategories = await Promise.all(
+      categories.map(async (category) => {
+        const { data: services, error: servicesError } = await supabase
+          .from("services")
+          .select("*")
+          .eq("category_id", category.id)
+          .order("title")
+          .limit(limit);
+
+        if (servicesError) {
+          console.error(`Error fetching services for category ${category.category_name}:`, servicesError);
+          return { category, services: [] };
+        }
+
+        return {
+          category,
+          services: services || []
+        };
+      })
+    );
+
+    return servicesWithCategories;
+  } catch (error) {
+    console.error("Error in getServicesByCategory:", error);
+    throw new Error("Failed to fetch services by category");
+  }
+}
+
 export async function getServiceWithDetailsBySlug(slug: string): Promise<ServiceWithDetails | null> {
   const supabase = await createClient()
 
