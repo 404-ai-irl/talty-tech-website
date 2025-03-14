@@ -1,6 +1,6 @@
 import type { Database } from "./db.types"
 
-export type ServiceCategoryEnum = Database["public"]["Enums"]["service_category"];
+// No enums in the database schema
 
 export type ServiceBenefit = {
   title: string;
@@ -14,7 +14,7 @@ export type ServiceProcessStep = {
   order: number;
 };
 
-export type ServiceDetails = Database['public']['Tables']['service_details']['Row'] & {
+export type ServiceDetails = Omit<Database['public']['Tables']['service_details']['Row'], 'benefits' | 'process'> & {
   benefits: ServiceBenefit[];
   process: ServiceProcessStep[];
 };

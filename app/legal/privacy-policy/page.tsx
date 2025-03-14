@@ -2,7 +2,7 @@ import { H1, H2, P } from "@/components/ui/typography";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Watchtower Web',
+  title: 'Privacy Policy | Talty Tech',
   description: 'Our privacy policy outlines how we collect, use, and protect your personal information.',
 };
 
@@ -24,7 +24,7 @@ export default function PrivacyPolicyPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto prose prose-slate prose-lg">
             <P>
-              At Watchtower Web, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
+              At Talty Tech, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.
             </P>
 
             <H2>Information We Collect</H2>
@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
             <ul>
               <li>With vendors, consultants, and other service providers who need access to such information to carry out work on our behalf</li>
               <li>In response to a request for information if we believe disclosure is in accordance with any applicable law, regulation, or legal process</li>
-              <li>If we believe your actions are inconsistent with the spirit or language of our user agreements or policies, or to protect the rights, property, and safety of Watchtower Web or others</li>
+              <li>If we believe your actions are inconsistent with the spirit or language of our user agreements or policies, or to protect the rights, property, and safety of Talty Tech or others</li>
               <li>In connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company</li>
               <li>With your consent or at your direction, including if we notify you that the information you provide will be shared in a particular manner and you provide such information</li>
             </ul>
@@ -85,7 +85,7 @@ export default function PrivacyPolicyPage() {
             <H2>Your Choices</H2>
             <h3>Account Information</h3>
             <P>
-              You may update, correct, or delete information about you at any time by logging into your online account or emailing us at privacy@watchtowerweb.com. If you wish to delete or deactivate your account, please email us, but note that we may retain certain information as required by law or for legitimate business purposes.
+              You may update, correct, or delete information about you at any time by logging into your online account or emailing us at andrew@taltytech.com. If you wish to delete or deactivate your account, please email us, but note that we may retain certain information as required by law or for legitimate business purposes.
             </P>
 
             <h3>Cookies</h3>
@@ -95,7 +95,7 @@ export default function PrivacyPolicyPage() {
 
             <h3>Promotional Communications</h3>
             <P>
-              You may opt out of receiving promotional emails from Watchtower Web by following the instructions in those emails or by emailing us. If you opt out, we may still send you non-promotional emails, such as those about your account or our ongoing business relations.
+              You may opt out of receiving promotional emails from Talty Tech by following the instructions in those emails or by emailing us. If you opt out, we may still send you non-promotional emails, such as those about your account or our ongoing business relations.
             </P>
 
             <H2>Changes to this Privacy Policy</H2>
@@ -108,11 +108,10 @@ export default function PrivacyPolicyPage() {
               If you have any questions about this privacy policy, please contact us at:
             </P>
             <address>
-              Watchtower Web<br />
-              123 Tech Boulevard, Suite 456<br />
-              San Francisco, CA 94105<br />
-              Email: privacy@watchtowerweb.com<br />
-              Phone: (415) 555-0123
+              Talty Tech<br />
+              Talty, TX 75162<br />
+              Email: andrew@taltytech.com<br />
+              Phone: (469) 797-4677
             </address>
           </div>
         </div>

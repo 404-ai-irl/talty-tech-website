@@ -3,9 +3,10 @@
 import { createClient } from "@/utils/supabase/ssr"
 
 export type ServiceCategory = {
-  id: number;
+  id: string;
   category_name: string;
   category_slug: string;
+  created_at: string;
 }
 
 export async function getServiceCategories(): Promise<ServiceCategory[]> {

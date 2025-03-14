@@ -1,10 +1,12 @@
 import Link from "next/link"
-import React, { memo } from "react"
-import { Mail, MapPin, Phone, type LucideIcon } from "lucide-react"
+import React, { memo, use, Suspense } from "react"
+import { Mail, MapPin, Phone, Github, Linkedin, Twitter, type LucideIcon } from "lucide-react"
+import { getServiceCategories } from "@/app/actions/serviceCategories"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import FancyLogo from "@/components/fancy-logo"
+import { Separator } from "@/components/ui/separator"
+import FancyLogo from "@/components/globals/fancy-logo"
 
 /**
  * Footer link component for consistent styling
@@ -13,6 +15,44 @@ interface FooterLinkProps {
   href: string;
   children: React.ReactNode;
   className?: string;
+}
+
+/**
+ * Footer Services Categories Component
+ */
+function FooterServiceCategories() {
+  const categoriesPromise = getServiceCategories();
+  const categories = use(categoriesPromise);
+  
+  return (
+    <ul className="space-y-2 text-sm" aria-labelledby="services-links">
+      <li>
+        <FooterLink href="/services">All Services</FooterLink>
+      </li>
+      {categories.map((category) => (
+        <li key={category.id}>
+          <FooterLink href={`/services/category/${category.category_slug}`}>
+            {category.category_name}
+          </FooterLink>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * Footer Services Skeleton for loading state
+ */
+function FooterServicesSkeleton() {
+  return (
+    <ul className="space-y-2 text-sm">
+      {[...Array(5)].map((_, i) => (
+        <li key={i}>
+          <div className="h-5 w-28 bg-muted/50 animate-pulse rounded-md" />
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 const FooterLink: React.FC<FooterLinkProps> = ({ href, children, className }) => (
@@ -30,16 +70,53 @@ const FooterLink: React.FC<FooterLinkProps> = ({ href, children, className }) =>
 interface ContactItemProps {
   icon: LucideIcon;
   children: React.ReactNode;
+  href?: string;
 }
 
-const ContactItem: React.FC<ContactItemProps> = ({ icon, children }) => (
-  <li className="flex items-start gap-2">
+const ContactItem: React.FC<ContactItemProps> = ({ icon, children, href }) => {
+  const item = (
+    <div className="flex items-start gap-2">
+      {React.createElement(icon, { 
+        className: "mt-0.5 h-4 w-4 text-muted-foreground", 
+        "aria-hidden": "true" 
+      })}
+      <span className="text-muted-foreground">{children}</span>
+    </div>
+  );
+
+  if (href) {
+    return (
+      <li className="mb-3">
+        <Link href={href} className="hover:text-primary transition-colors">
+          {item}
+        </Link>
+      </li>
+    );
+  }
+
+  return <li className="mb-3">{item}</li>;
+};
+
+/**
+ * Social media icon component
+ */
+interface SocialIconProps {
+  icon: LucideIcon;
+  href: string;
+  label: string;
+}
+
+const SocialIcon: React.FC<SocialIconProps> = ({ icon, href, label }) => (
+  <Link 
+    href={href} 
+    aria-label={label}
+    className="bg-muted/50 p-2 rounded-full hover:bg-primary/10 transition-colors flex items-center justify-center"
+  >
     {React.createElement(icon, { 
-      className: "mt-0.5 h-4 w-4 text-muted-foreground", 
+      className: "h-5 w-5 text-muted-foreground hover:text-primary", 
       "aria-hidden": "true" 
     })}
-    <span className="text-muted-foreground">{children}</span>
-  </li>
+  </Link>
 );
 
 /**
@@ -72,82 +149,79 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <FancyLogo />
             <p className="max-w-xs text-sm text-muted-foreground">
-              Bringing innovative technology solutions to local businesses since we were founded in 2025. We help you compete, grow, and
-              thrive in the digital age.
+              Bringing innovative technology solutions to businesses across Texas. Let's harness the power of web development, 
+              workflow optimization, and AI integration to drive your growth.
             </p>
+            
+            <div className="flex gap-3 pt-2">
+              <SocialIcon 
+                icon={Github} 
+                href="https://github.com/taltytech" 
+                label="Talty Tech on GitHub"
+              />
+              <SocialIcon 
+                icon={Linkedin} 
+                href="https://linkedin.com/in/taltytech" 
+                label="Talty Tech on LinkedIn"
+              />
+              <SocialIcon 
+                icon={Twitter} 
+                href="https://twitter.com/taltytech" 
+                label="Talty Tech on Twitter"
+              />
+            </div>
           </div>
 
-          {/* Company Links */}
-          <FooterSection title="Company" id="company-links">
+          {/* Quick Links */}
+          <FooterSection title="Quick Links" id="company-links">
             <ul className="space-y-2 text-sm" aria-labelledby="company-links">
               <li>
                 <FooterLink href="/about">About Us</FooterLink>
               </li>
               <li>
-                <FooterLink href="/about/team">Our Team</FooterLink>
+                <FooterLink href="/services">Services</FooterLink>
               </li>
               <li>
-                <FooterLink href="/about/careers">Careers</FooterLink>
+                <FooterLink href="/contact">Contact</FooterLink>
               </li>
               <li>
-                <FooterLink href="/about/mission">Mission & Values</FooterLink>
+                <FooterLink href="/about/mission">Our Mission</FooterLink>
               </li>
               <li>
-                <FooterLink href="/blog">Blog</FooterLink>
+                <FooterLink href="/about/story">Our Story</FooterLink>
               </li>
             </ul>
           </FooterSection>
 
           {/* Services Links */}
           <FooterSection title="Services" id="services-links">
-            <ul className="space-y-2 text-sm" aria-labelledby="services-links">
-              <li>
-                <FooterLink href="/services/developing">Developing</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/consulting">Consulting</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/training">Training & Education</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/security">Security Solutions</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/cloud">Cloud Services</FooterLink>
-              </li>
-              <li>
-                <FooterLink href="/services/mobile">Mobile Development</FooterLink>
-              </li>
-            </ul>
+            <Suspense fallback={<FooterServicesSkeleton />}>
+              <FooterServiceCategories />
+            </Suspense>
           </FooterSection>
 
           {/* Contact Information */}
           <div className="space-y-4">
             <h3 className="text-sm font-medium" id="contact-info">Contact Us</h3>
-            <ul className="space-y-3 text-sm" aria-labelledby="contact-info">
+            <ul className="mt-3" aria-labelledby="contact-info">
               <ContactItem icon={MapPin}>
-                123 Tech Avenue, Suite 400
-                <br />
-                San Francisco, CA 94107
+                Talty, TX 75162
               </ContactItem>
-              <li className="flex items-center gap-2">
-                <Phone className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-                <FooterLink href="tel:+15551234567" className="inline-flex">(555) 123-4567</FooterLink>
-              </li>
-              <li className="flex items-center gap-2"> 
-                <Mail className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
-                <FooterLink href="mailto:info@taltytech.com">info@taltytech.com</FooterLink>
-              </li>
+              <ContactItem icon={Phone} href="tel:+14697974677">
+                (469) 797-4677
+              </ContactItem>
+              <ContactItem icon={Mail} href="mailto:andrew@taltytech.com">
+                andrew@taltytech.com
+              </ContactItem>
             </ul>
             
             {/* Newsletter Signup */}
-            <div className="space-y-2">
-              <h4 className="text-sm font-medium" id="newsletter-signup">Subscribe to our newsletter</h4>
+            <div className="space-y-2 pt-4">
+              <h4 className="text-sm font-medium" id="newsletter-signup">Get the latest updates</h4>
               <form className="flex gap-2" aria-labelledby="newsletter-signup">
                 <Input 
                   type="email" 
-                  placeholder="Email address" 
+                  placeholder="Your email" 
                   className="max-w-[180px]" 
                   aria-label="Email address for newsletter"
                   required
@@ -156,29 +230,27 @@ const Footer: React.FC = () => {
                   Subscribe
                 </Button>
               </form>
+              <p className="text-xs text-muted-foreground mt-2">
+                We'll never share your email. Unsubscribe anytime.
+              </p>
             </div>
           </div>
         </div>
 
+        <Separator className="my-8" />
+
         {/* Footer Bottom */}
-        <div className="mt-12 border-t border-border pt-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-xs text-muted-foreground">
-              &copy; {currentYear} Talty Tech. All rights reserved.
-            </p>
-            <nav aria-label="Legal links">
-              <div className="flex gap-4">
-                <FooterLink href="/privacy" className="text-xs">
-                  Privacy Policy
-                </FooterLink>
-                <FooterLink href="/terms" className="text-xs">
-                  Terms of Service
-                </FooterLink>
-                <FooterLink href="/cookies" className="text-xs">
-                  Cookie Policy
-                </FooterLink>
-              </div>
-            </nav>
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-muted-foreground">
+            &copy; {currentYear} Talty Tech. All rights reserved.
+          </p>
+          <div className="flex items-center gap-6">
+            <Button variant="link" size="sm" className="h-auto p-0 text-xs text-muted-foreground hover:text-primary" asChild>
+              <Link href="/legal/privacy-policy">Privacy</Link>
+            </Button>
+            <Button variant="link" size="sm" className="h-auto p-0 text-xs text-muted-foreground hover:text-primary" asChild>
+              <Link href="/legal/terms-of-service">Terms</Link>
+            </Button>
           </div>
         </div>
       </div>

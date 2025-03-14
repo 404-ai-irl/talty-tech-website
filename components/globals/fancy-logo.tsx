@@ -121,7 +121,6 @@ const FancyLogo: React.FC = () => {
       `}</style>
 
       <Link href="/" className="logo-container group relative flex items-center gap-2 py-2">
-        <div className="logo-bg"></div>
 
         <div className="sparkle-container mr-0.5">
           <Sparkles className="sparkle-icon h-6 w-6 text-primary" aria-hidden="true" />
@@ -133,8 +132,7 @@ const FancyLogo: React.FC = () => {
             <div className="relative overflow-hidden rounded-md px-1" aria-label="Talty Tech">
               {/* Talty with individual letter animations */}
               <div className="relative z-10 text-2xl font-bold tracking-tight">                
-                <span className="text-primary">Talty</span>
-                <span className="ml-0.5 text-2xl font-extrabold ">Tech</span>
+                Talty Tech
               </div>
 
               {/* Animated underline */}

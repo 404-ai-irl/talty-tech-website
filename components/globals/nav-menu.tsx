@@ -1,10 +1,79 @@
 import Link from "next/link"
 import { Menu, ChevronDown } from "lucide-react"
+import { use, Suspense } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { getServiceCategories } from "@/app/actions/serviceCategories"
+
+// Component to display service categories in the dropdown menu
+function ServiceCategoriesMenu() {
+  const categoriesPromise = getServiceCategories();
+  const categories = use(categoriesPromise);
+  
+  return (
+    <>
+      {/* All Services link at the top */}
+      <ul className="space-y-3">
+        <li>
+          <Link href="/services" className="text-sm transition-colors hover:text-primary font-medium">
+            All Services
+          </Link>
+        </li>
+        {/* Categories list */}
+        {categories.map((category) => (
+          <li key={category.id}>
+            <Link 
+              href={`/services/category/${category.category_slug}`} 
+              className="text-sm transition-colors hover:text-primary"
+            >
+              {category.category_name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+// Component to display service categories in the mobile accordion
+function ServiceCategoriesMobileMenu() {
+  const categoriesPromise = getServiceCategories();
+  const categories = use(categoriesPromise);
+  
+  return (
+    <ul className="space-y-3">
+      <li>
+        <Link href="/services" className="text-sm hover:text-primary font-medium">
+          All Services
+        </Link>
+      </li>
+      {categories.map((category) => (
+        <li key={category.id}>
+          <Link 
+            href={`/services/category/${category.category_slug}`} 
+            className="text-sm hover:text-primary"
+          >
+            {category.category_name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// Skeleton loading state for service categories
+function ServiceCategoriesSkeleton() {
+  return (
+    <div className="space-y-3">
+      {[...Array(4)].map((_, i) => (
+        <div key={i} className="h-5 w-40 bg-muted/50 animate-pulse rounded-md" />
+      ))}
+    </div>
+  );
+}
 
 export default function Header() {
   return (
@@ -64,26 +133,12 @@ export default function Header() {
             <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
               Services <ChevronDown className="h-4 w-4" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-[280px] p-4">
+            <DropdownMenuContent align="start" className="w-[320px] p-4">
               <div className="space-y-3">
                 <h3 className="text-sm font-medium text-muted-foreground">OUR SERVICES</h3>
-                <ul className="space-y-3">
-                  <li>
-                    <Link href="/services/developing" className="text-sm transition-colors hover:text-primary">
-                      Developing
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/services/consulting" className="text-sm transition-colors hover:text-primary">
-                      Consulting
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/services/training" className="text-sm transition-colors hover:text-primary">
-                      Training & Education
-                    </Link>
-                  </li>
-                </ul>
+                <Suspense fallback={<ServiceCategoriesSkeleton />}>
+                  <ServiceCategoriesMenu />
+                </Suspense>
               </div>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -153,23 +208,9 @@ export default function Header() {
                   <AccordionContent>
                     <div className="mt-3 mb-2 pl-4">
                       <h3 className="text-sm font-medium text-muted-foreground mb-3">OUR SERVICES</h3>
-                      <ul className="space-y-3">
-                        <li>
-                          <Link href="/services/developing" className="text-sm hover:text-primary">
-                            Developing
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/consulting" className="text-sm hover:text-primary">
-                            Consulting
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/training" className="text-sm hover:text-primary">
-                            Training & Education
-                          </Link>
-                        </li>
-                      </ul>
+                      <Suspense fallback={<ServiceCategoriesSkeleton />}>
+                        <ServiceCategoriesMobileMenu />
+                      </Suspense>
                     </div>
                   </AccordionContent>
                 </AccordionItem>

@@ -6,23 +6,29 @@ This is the official website for Talty Tech, built with Next.js 15 and React 19.
 
 The Talty Tech website provides information about our services, company, and ways to contact us. It features:
 
-- Modern, responsive design
+- Modern, responsive design with animations and interactive elements
 - Service listings with detailed information
 - Contact form for lead generation
 - Legal pages (Terms of Service, Privacy Policy)
+- Authentication system for private sections
+- Dark/light mode theme support
 
 ## Technology Stack
 
-- **Framework**: [Next.js](https://nextjs.org) 15.2.1
+- **Framework**: [Next.js](https://nextjs.org) 15.2.1 with App Router
 - **UI Library**: [React](https://react.dev) 19.0.0
-- **Styling**: [Tailwind CSS](https://tailwindcss.com) 4.x
+- **Styling**: 
+  - [Tailwind CSS](https://tailwindcss.com) 4.x
+  - CSS Modules for component-specific styling
 - **Language**: [TypeScript](https://www.typescriptlang.org/) 5.x
 - **Database**: [Supabase](https://supabase.com) for PostgreSQL database
 - **UI Components**:
-  - [Radix UI](https://www.radix-ui.com/) for accessible components
-  - Custom UI components built with Tailwind
+  - [shadcn/ui](https://ui.shadcn.com/) with New York style
+  - [Radix UI](https://www.radix-ui.com/) for accessible component primitives
 - **Form Handling**: react-hook-form with zod validation
 - **Theme Support**: next-themes for light/dark mode
+- **Performance Monitoring**: Vercel Analytics and Speed Insights
+- **Fonts**: Geist Sans and Geist Mono
 
 ## Getting Started
 
@@ -40,75 +46,72 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-The site uses Turbopack for faster development builds.
+The site uses Turbopack for faster development builds (`--turbopack` flag).
 
 ## Project Structure
 
 - `app/` - Next.js App Router pages and layouts
   - `about/` - About page
+  - `actions/` - Server actions
+  - `auth/` - Authentication related routes
   - `contact/` - Contact page
   - `legal/` - Legal pages (Terms of Service, Privacy Policy)
+  - `login/` - Login page
+  - `private/` - Protected routes
   - `services/` - Service listings and details
 - `components/` - React components
-  - `forms/` - Form components
-  - `sections/` - Major page sections
-  - `segments/` - Reusable page segments
-  - `ui/` - UI components (buttons, cards, etc.)
-- `lib/` - Utility functions
+  - `globals/` - Global components like Header and Footer
+  - `hero-section/` - Hero components with animations
+  - `ui/` - UI components from shadcn
+  - `watchtower-animation/` - Custom animation components
+- `lib/` - Utility functions and service clients
 - `public/` - Static assets
-- `db/` - Database configuration and models
+- `supabase/` - Supabase configuration and migrations
+  - `schemas/` - SQL schema definitions
+  - `migrations/` - Database migrations
 
-## Database Configuration
+## Database Schema
 
-This project uses [Supabase](https://supabase.com) as its PostgreSQL database provider. The database connection is configured using environment variables stored in `.env.development.local` for local development and in the Vercel dashboard for production.
+The Supabase database includes the following tables:
 
-For detailed information about the database setup, connection methods, security practices, and usage examples, see the [Database Documentation](./docs/DATABASE.md).
+- `lead` - Contact form submissions
+- `service_categories` - Categories of services offered
+- `services` - Services within each category
+- `service_details` - Detailed information about each service
 
-### Environment Variables
+## Environment Variables
 
-The following environment variables are required for database connection:
+The following environment variables are required:
 
 ```shell
-
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-POSTGRES_URL=your-postgres-connection-string
-POSTGRES_PRISMA_URL=your-postgres-prisma-connection-string
-POSTGRES_URL_NON_POOLING=your-postgres-non-pooling-connection-string
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
 ```
 
-## Deployment to Vercel
+## Current Progress
 
-### Next Steps for Deployment
+The project currently has:
 
-1. **Create a Vercel Account**: If you don't have one already, sign up at [vercel.com](https://vercel.com)
+- ✅ Basic project structure and routing
+- ✅ Homepage with animated hero section
+- ✅ Theme support (light/dark mode)
+- ✅ Supabase integration
+- ✅ UI component library setup (shadcn/ui)
+- ✅ Global layout with header and footer
 
-2. **Install Vercel CLI** (optional):
+## Next Steps
 
-   ```bash
-   pnpm install -g vercel
-   ```
+- Complete service listing pages
+- Finalize the contact form with form validation
+- Add more content to About page
+- Implement authentication flow for private sections
+- Develop admin dashboard for managing content
+- Add SEO optimization and metadata for all pages
+- Optimize for performance and accessibility
 
-3. **Deploy from Git**:
-   - Push your code to a Git repository (GitHub, GitLab, or Bitbucket)
-   - Import the project in the Vercel dashboard
-   - Configure your project settings (environment variables, build commands)
-   - Deploy
+## Deployment
 
-4. **Alternative: Deploy from CLI**:
+The project is configured for deployment to Vercel with Analytics and Speed Insights already integrated.
 
-   ```bash
-   vercel
-   ```
-
-5. **Configure Custom Domain**:
-   - Add your domain in the Vercel dashboard
-   - Update DNS settings as instructed
-
-6. **Set Up Environment Variables**:
-   - Add any required environment variables in the Vercel dashboard
-
-7. **Enable Analytics** (optional):
-   - Enable Vercel Analytics for performance monitoring
-
-For more details, see the [Vercel deployment documentation](https://vercel.com/docs/deployments/overview).
+For deployment instructions, follow the [Vercel deployment documentation](https://vercel.com/docs/deployments/overview).

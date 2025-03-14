@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import FancyLogo from "@/components/fancy-logo"
+import FancyLogo from "@/components/globals/fancy-logo"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 /**
@@ -58,14 +58,14 @@ const Header: React.FC = () => {
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-lg font-medium mb-3">
-                    Learn more about the talty tech difference
+                    Learn more about Talty Tech
                   </h3>
                   <p className="text-muted-foreground text-sm">
                     Discover how our innovative approach and dedication to excellence sets us apart from the
                     competition.
                   </p>
                   <Button variant="link" size="sm" className="px-0 mt-2" asChild>
-                    <Link href="/about/our-difference">
+                    <Link href="/about">
                       Read our story <span aria-hidden="true">→</span>
                     </Link>
                   </Button>
@@ -74,8 +74,8 @@ const Header: React.FC = () => {
                   <h3 className="text-sm font-medium text-muted-foreground" id="about-navigation">EXPLORE</h3>
                   <ul className="space-y-3" aria-labelledby="about-navigation">
                     <li>
-                      <Link href="/about/team" className="text-sm transition-colors hover:text-primary">
-                        Our Team
+                      <Link href="/about" className="text-sm transition-colors hover:text-primary">
+                        About Us
                       </Link>
                     </li>
                     <li>
@@ -84,8 +84,8 @@ const Header: React.FC = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about/careers" className="text-sm transition-colors hover:text-primary">
-                        Careers
+                      <Link href="/about/story" className="text-sm transition-colors hover:text-primary">
+                        Our Story
                       </Link>
                     </li>
                   </ul>
@@ -109,28 +109,23 @@ const Header: React.FC = () => {
                     aria-labelledby="services-navigation-categories"
                   >
                     <li>
-                      <Link href="/services/custom-ai" className="text-sm transition-colors hover:text-primary">
-                        Custom AI & Machine Learning Solutions
+                      <Link href="/services" className="text-sm transition-colors hover:text-primary">
+                        All Services
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/automation" className="text-sm transition-colors hover:text-primary">
-                        Business Process Automation
+                      <Link href="/services/category/web-development" className="text-sm transition-colors hover:text-primary">
+                        Web Development
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/web-dev" className="text-sm transition-colors hover:text-primary">
-                        Custom Web Development Solutions
+                      <Link href="/services/category/ai-integration" className="text-sm transition-colors hover:text-primary">
+                        AI Integration
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/lead-funnels" className="text-sm transition-colors hover:text-primary">
-                        High-Converting Lead Funnels
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/consulting" className="text-sm transition-colors hover:text-primary">
-                        Expert IT Consulting & Strategy
+                      <Link href="/services/category/workflow-optimization" className="text-sm transition-colors hover:text-primary">
+                        Workflow Optimization
                       </Link>
                     </li>
                   </ul>
@@ -140,7 +135,7 @@ const Header: React.FC = () => {
                     className="text-sm font-medium text-muted-foreground"
                     id="services-navigation-specific"
                   >
-                    SPECIFIC SERVICES
+                    FEATURED SERVICES
                   </h3>
                   <ul 
                     className="space-y-3"
@@ -152,28 +147,18 @@ const Header: React.FC = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/process-automation" className="text-sm transition-colors hover:text-primary">
-                        Process Automation
-                      </Link>
-                    </li>
-                    <li>
                       <Link href="/services/web-development" className="text-sm transition-colors hover:text-primary">
                         Website Development
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/lead-generation" className="text-sm transition-colors hover:text-primary">
-                        Lead Generation
+                      <Link href="/services/process-automation" className="text-sm transition-colors hover:text-primary">
+                        Process Automation
                       </Link>
                     </li>
                     <li>
-                      <Link href="/services/technology-consulting" className="text-sm transition-colors hover:text-primary">
-                        Technology Consulting
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/services/website-enhancement" className="text-sm transition-colors hover:text-primary">
-                        Website Enhancement
+                      <Link href="/services/custom-software" className="text-sm transition-colors hover:text-primary">
+                        Custom Software
                       </Link>
                     </li>
                   </ul>
@@ -182,9 +167,8 @@ const Header: React.FC = () => {
             </DropdownMenuContent>
           </NavItem>
 
-          <NavItem text="Contact" href="/contact" />
-          <Button variant="default" size="sm" className="px-5 py-2 font-medium">
-            Get Started
+          <Button variant="default" size="sm" className="px-5 py-2 font-medium" asChild>
+            <Link href="/contact">Get Started</Link>
           </Button>
           <ThemeToggle />
         </nav> 
@@ -205,12 +189,12 @@ const Header: React.FC = () => {
                   <AccordionTrigger className="py-2 text-base font-medium hover:text-primary">About</AccordionTrigger>
                   <AccordionContent>
                     <div className="mt-3 mb-2 pl-4">
-                      <h3 className="font-medium mb-2">The talty tech difference</h3>
+                      <h3 className="font-medium mb-2">The Talty Tech difference</h3>
                       <p className="text-muted-foreground text-sm mb-2">
                         Discover our innovative approach and dedication.
                       </p>
                       <Button variant="link" size="sm" className="px-0 mb-3" asChild>
-                        <Link href="/about/our-difference">
+                        <Link href="/about">
                           Read our story <span aria-hidden="true">→</span>
                         </Link>
                       </Button>
@@ -218,8 +202,8 @@ const Header: React.FC = () => {
                         <h4 className="text-sm font-medium text-muted-foreground" id="mobile-about-nav">EXPLORE</h4>
                         <ul className="space-y-3" aria-labelledby="mobile-about-nav">
                           <li>
-                            <Link href="/about/team" className="text-sm hover:text-primary">
-                              Our Team
+                            <Link href="/about" className="text-sm hover:text-primary">
+                              About Us
                             </Link>
                           </li>
                           <li>
@@ -228,8 +212,8 @@ const Header: React.FC = () => {
                             </Link>
                           </li>
                           <li>
-                            <Link href="/about/careers" className="text-sm hover:text-primary">
-                              Careers
+                            <Link href="/about/story" className="text-sm hover:text-primary">
+                              Our Story
                             </Link>
                           </li>
                         </ul>
@@ -253,28 +237,23 @@ const Header: React.FC = () => {
                       >SERVICE CATEGORIES</h3>
                       <ul className="space-y-3 mb-4" aria-labelledby="mobile-services-categories">
                         <li>
-                          <Link href="/services/custom-ai" className="text-sm hover:text-primary">
-                            Custom AI & Machine Learning Solutions
+                          <Link href="/services" className="text-sm hover:text-primary">
+                            All Services
                           </Link>
                         </li>
                         <li>
-                          <Link href="/services/automation" className="text-sm hover:text-primary">
-                            Business Process Automation
+                          <Link href="/services/category/web-development" className="text-sm hover:text-primary">
+                            Web Development
                           </Link>
                         </li>
                         <li>
-                          <Link href="/services/web-dev" className="text-sm hover:text-primary">
-                            Custom Web Development Solutions
+                          <Link href="/services/category/ai-integration" className="text-sm hover:text-primary">
+                            AI Integration
                           </Link>
                         </li>
                         <li>
-                          <Link href="/services/lead-funnels" className="text-sm hover:text-primary">
-                            High-Converting Lead Funnels
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/consulting" className="text-sm hover:text-primary">
-                            Expert IT Consulting & Strategy
+                          <Link href="/services/category/workflow-optimization" className="text-sm hover:text-primary">
+                            Workflow Optimization
                           </Link>
                         </li>
                       </ul>
@@ -282,16 +261,11 @@ const Header: React.FC = () => {
                       <h3 
                         className="text-sm font-medium text-muted-foreground mb-3"
                         id="mobile-services-specific"
-                      >SPECIFIC SERVICES</h3>
+                      >FEATURED SERVICES</h3>
                       <ul className="space-y-3" aria-labelledby="mobile-services-specific">
                         <li>
                           <Link href="/services/ai-assistants" className="text-sm hover:text-primary">
                             AI Assistants
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/process-automation" className="text-sm hover:text-primary">
-                            Process Automation
                           </Link>
                         </li>
                         <li>
@@ -300,18 +274,13 @@ const Header: React.FC = () => {
                           </Link>
                         </li>
                         <li>
-                          <Link href="/services/lead-generation" className="text-sm hover:text-primary">
-                            Lead Generation
+                          <Link href="/services/process-automation" className="text-sm hover:text-primary">
+                            Process Automation
                           </Link>
                         </li>
                         <li>
-                          <Link href="/services/technology-consulting" className="text-sm hover:text-primary">
-                            Technology Consulting
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/website-enhancement" className="text-sm hover:text-primary">
-                            Website Enhancement
+                          <Link href="/services/custom-software" className="text-sm hover:text-primary">
+                            Custom Software
                           </Link>
                         </li>
                       </ul>
@@ -320,11 +289,8 @@ const Header: React.FC = () => {
                 </AccordionItem>
               </Accordion>
 
-              <Link href="/contact" className="py-2 text-base font-medium transition-colors hover:text-primary">
-                Contact
-              </Link>
-              <Button variant="default" className="mt-2" size="sm">
-                Get Started
+              <Button variant="default" className="mt-2" size="sm" asChild>
+                <Link href="/contact">Get Started</Link>
               </Button>
               <div className="mt-4 flex items-center">
                 <span className="text-sm mr-2">Toggle theme:</span>
