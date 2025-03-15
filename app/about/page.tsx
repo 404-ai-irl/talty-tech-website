@@ -42,7 +42,7 @@ export default function AboutPage() {
           <div>
             <H2 className="mb-4">Who We Are</H2>
             <P className="mb-4">
-              Founded in Talty, Texas, we're a technology company with a vision to make cutting-edge digital solutions accessible to businesses of all sizes. We specialize in creating custom web applications, implementing AI-powered tools, and optimizing business workflows.
+              Founded in Talty, Texas, we&apos;re a technology company with a vision to make cutting-edge digital solutions accessible to businesses of all sizes. We specialize in creating custom web applications, implementing AI-powered tools, and optimizing business workflows.
             </P>
             <P className="mb-6">
               Our approach combines technical expertise with a deep understanding of business challenges, allowing us to deliver solutions that not only solve immediate problems but also position our clients for long-term success in an increasingly digital world.

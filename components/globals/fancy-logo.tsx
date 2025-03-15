@@ -5,13 +5,6 @@ import Link from "next/link"
 import { Sparkles } from "lucide-react"
 
 /**
- * CSS Variable types for theme consistency
- */
-type ThemeVariables = {
-  "--primary-rgb": string;
-};
-
-/**
  * Animated logo component with interactive effects
  * Implements optimized animations with proper cleanup
  */

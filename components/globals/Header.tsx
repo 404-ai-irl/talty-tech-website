@@ -10,7 +10,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/compon
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import FancyLogo from "@/components/globals/fancy-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { ServiceCategory } from "@/app/actions/serviceCategories";
+import type { Database } from "@/lib/types/db.types";
+import { getSupabase } from "@/lib/db";
+
+// Define types for database objects
+type ServiceCategory = Database["public"]["Tables"]["service_categories"]["Row"];
+type Service = Database["public"]["Tables"]["services"]["Row"];
 
 // Define service icons mapping
 const categoryIcons: Record<string, React.ReactNode> = {
@@ -51,13 +56,6 @@ const NavItem: React.FC<NavItemProps> = ({ text, href, children }) => {
   );
 };
 
-// Interface for service data
-interface Service {
-  id: number;
-  title: string;
-  "url-slug": string;
-}
-
 // Client component for services menu
 const ServiceMenuContent = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -65,31 +63,88 @@ const ServiceMenuContent = () => {
     category: ServiceCategory;
     services: Service[];
   }[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // We fetch using the API endpoint to avoid using server components in the menu
-        const response = await fetch('/api/services/categories-with-services');
-        const data = await response.json();
-        setCategoriesWithServices(data);
-      } catch (error) {
-        console.error('Error fetching services:', error);
+        setIsLoading(true);
+        setError(null);
+
+        // Use the shared Supabase client
+        const supabase = getSupabase();
+        
+        // Fetch categories
+        const { data: categories, error: categoriesError } = await supabase
+          .from("service_categories")
+          .select("*")
+          .order("category_name");
+          
+        if (categoriesError) {
+          throw new Error(`Error fetching categories: ${categoriesError.message}`);
+        }
+        
+        if (!categories || categories.length === 0) {
+          setCategoriesWithServices([]);
+          setIsLoading(false);
+          return;
+        }
+        
+        // Fetch services for each category
+        const result = await Promise.all(
+          categories.map(async (category) => {
+            const { data: services, error: servicesError } = await supabase
+              .from("services")
+              .select("*")
+              .eq("category_id", category.id)
+              .order("title")
+              .limit(4);
+              
+            if (servicesError) {
+              console.error(`Error fetching services for category ${category.category_name}:`, servicesError);
+              return { category, services: [] };
+            }
+            
+            return {
+              category,
+              services: services || []
+            };
+          })
+        );
+        
+        setCategoriesWithServices(result);
+      } catch (err: unknown) {
+        console.error("Error fetching services:", err);
+        setError(err instanceof Error ? err.message : "Failed to load services");
       } finally {
         setIsLoading(false);
       }
     };
-
+    
     fetchData();
   }, []);
 
   if (isLoading) {
     return <ServiceMenuSkeleton />;
   }
+  
+  if (error) {
+    return (
+      <div className="p-6 text-center">
+        <p className="text-sm text-muted-foreground mb-4">There was an error loading services.</p>
+        <Link
+          href="/services"
+          className="text-sm font-medium text-primary hover:underline"
+        >
+          View all services →
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <div>
-      <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+    <div className="w-full">
+      <div className="mb-4">
         <Link
           href="/services"
           className="flex select-none flex-col gap-1 rounded-md bg-gradient-to-br from-muted/50 to-muted p-4 hover:bg-muted/80"
@@ -145,7 +200,7 @@ const ServiceMenuContent = () => {
       </div>
       
       <div className="mt-6 pt-6 border-t">
-        <Button asChild>
+        <Button asChild className="w-full md:w-auto">
           <Link href="/contact">Get Started with Talty Tech</Link>
         </Button>
       </div>
@@ -155,8 +210,8 @@ const ServiceMenuContent = () => {
 
 function ServiceMenuSkeleton() {
   return (
-    <div className="space-y-6">
-      <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+    <div className="space-y-6 w-full">
+      <div className="mb-4">
         <div className="h-24 bg-muted animate-pulse rounded-md" />
       </div>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -173,6 +228,9 @@ function ServiceMenuSkeleton() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-6 pt-6 border-t">
+        <div className="h-10 w-full bg-primary/60 animate-pulse rounded-md" />
       </div>
     </div>
   );
@@ -252,7 +310,7 @@ const Header = () => {
               <span className="sr-only">Open mobile menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="overflow-y-auto">
+          <SheetContent side="right" className="overflow-y-auto w-full max-w-md">
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <nav className="flex flex-col gap-4 mt-8">
               {/* Mobile About with accordion */}
@@ -302,60 +360,9 @@ const Header = () => {
                     Services
                   </AccordionTrigger>
                   <AccordionContent>
-                    <div className="mt-3 mb-2 pl-4">
-                      <h3 
-                        className="text-sm font-medium text-muted-foreground mb-3"
-                        id="mobile-services-categories"
-                      >SERVICE CATEGORIES</h3>
-                      <ul className="space-y-3 mb-4" aria-labelledby="mobile-services-categories">
-                        <li>
-                          <Link href="/services" className="text-sm hover:text-primary">
-                            All Services
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/category/website_development" className="text-sm hover:text-primary">
-                            Website Development
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/category/custom_ai" className="text-sm hover:text-primary">
-                            AI Solutions
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/category/automation" className="text-sm hover:text-primary">
-                            Process Automation
-                          </Link>
-                        </li>
-                      </ul>
-                      
-                      <h3 
-                        className="text-sm font-medium text-muted-foreground mb-3"
-                        id="mobile-services-specific"
-                      >FEATURED SERVICES</h3>
-                      <ul className="space-y-3" aria-labelledby="mobile-services-specific">
-                        <li>
-                          <Link href="/services/ai-assistants" className="text-sm hover:text-primary">
-                            AI Assistants
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/web-development" className="text-sm hover:text-primary">
-                            Website Development
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/process-automation" className="text-sm hover:text-primary">
-                            Process Automation
-                          </Link>
-                        </li>
-                        <li>
-                          <Link href="/services/workflow-optimization" className="text-sm hover:text-primary">
-                            Workflow Optimization
-                          </Link>
-                        </li>
-                      </ul>
+                    <div className="mt-3 mb-2">
+                      {/* Use the same dynamic content as desktop */}
+                      <ServiceMenuContent />
                     </div>
                   </AccordionContent>
                 </AccordionItem>

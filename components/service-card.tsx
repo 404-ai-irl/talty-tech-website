@@ -31,7 +31,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
   const Icon = servicesIconMap[service.icon] || Layers
   
   // Extract category name from the service_categories property if it exists
-  const categoryName = service.service_categories?.category_name || service.category || "Service"
+  const categoryName = service.service_categories?.category_name || "Service"
 
   return (
     <Card className="flex flex-col h-full transition-all hover:shadow-md">

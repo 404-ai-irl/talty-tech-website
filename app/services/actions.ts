@@ -2,18 +2,18 @@
 
 import { createClient } from "@/utils/supabase/ssr"
 import type { Database } from "@/lib/types/db.types"
-import { ServiceCategoryEnum, ServiceBenefit, ServiceProcessStep } from "@/lib/types"
+import { ServiceBenefit, ServiceProcessStep } from "@/lib/types"
 
 export type Service = Database["public"]["Tables"]["services"]["Row"]
 export type ServiceDetailsRow = Database["public"]["Tables"]["service_details"]["Row"]
 
-export async function getServices(category?: ServiceCategoryEnum | null): Promise<Service[]> {
+export async function getServices(categoryId?: string | null): Promise<Service[]> {
   const supabase = await createClient()
 
   let query = supabase.from("services").select("*")
 
-  if (category) {
-    query = query.eq("category", category)
+  if (categoryId) {
+    query = query.eq("category_id", categoryId)
   }
 
   const { data, error } = await query.order("title")
@@ -26,21 +26,21 @@ export async function getServices(category?: ServiceCategoryEnum | null): Promis
   return data || []
 }
 
-export async function getServiceCategories(): Promise<ServiceCategoryEnum[]> {
+export async function getServiceCategories(): Promise<string[]> {
   const supabase = await createClient()
 
   const { data, error } = await supabase
-    .from("services")
-    .select("category")
-    .order("category")
+    .from("service_categories")
+    .select("category_name")
+    .order("category_name")
 
   if (error) {
     console.error("Error fetching service categories:", error)
     throw new Error("Failed to fetch service categories")
   }
 
-  // Extract unique categories
-  const categories = [...new Set(data.map(service => service.category))] as ServiceCategoryEnum[]
+  // Extract category names
+  const categories = data.map(category => category.category_name)
   return categories
 }
 
@@ -117,7 +117,7 @@ export async function getServiceWithDetailsBySlug(slug: string): Promise<Service
     const { data: categoryServices, error: categoryError } = await supabase
       .from("services")
       .select("*")
-      .eq("category", service.category)
+      .eq("category_id", service.category_id)
       .neq("id", service.id)
       .limit(3)
 

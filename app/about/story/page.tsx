@@ -150,10 +150,15 @@ export default function StoryPage() {
             At Talty Tech, we believe that technology should serve a purpose beyond itself. Every website we build, every workflow we optimize, and every AI solution we implement is designed with a clear goal in mind: to help your business operate more efficiently, serve customers better, and achieve sustainable growth.
           </P>
           <P className="mb-4">
-            We also believe in the power of personal relationships. As a Texas-based business, we value the opportunity to work directly with our clients, understand their unique challenges, and create solutions that truly meet their needs. We're not just building websites or implementing software—we're helping real people solve real business problems.
+            We also believe in the power of personal relationships.
+            As a Texas-based business, we value the opportunity to work directly with our clients,
+              understand their unique challenges, and create solutions that truly meet their needs.
+            We&apos;re not just building websites or implementing software—we&apos;re helping real people solve real business problems.
           </P>
           <P>
-            Most importantly, we believe in doing things right. That means taking the time to understand your business, being transparent about what we can deliver, and standing behind our work. It means using best practices in our development process, staying current with industry trends, and continuously improving our skills and knowledge.
+            Most importantly, we believe in doing things right.
+            That means taking the time to understand your business, being transparent about what we can deliver, and standing behind our work.
+            It means using best practices in our development process, staying current with industry trends, and continuously improving our skills and knowledge.
           </P>
         </section>
         
@@ -161,7 +166,7 @@ export default function StoryPage() {
         <div className="bg-muted/30 rounded-lg p-8 text-center">
           <H3 className="mb-4">Ready to write the next chapter together?</H3>
           <P className="mb-6 max-w-2xl mx-auto">
-            We're excited about the opportunity to help your business leverage technology to achieve its goals. 
+            We&apos;re excited about the opportunity to help your business leverage technology to achieve its goals. 
             Contact us today to start a conversation about how we can work together.
           </P>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

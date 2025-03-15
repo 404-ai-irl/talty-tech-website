@@ -5,28 +5,24 @@ import Link from "next/link"
 import { Code, Cog, Brain, Layers, PieChart, LineChart, Workflow, Laptop, Bot } from "lucide-react"
 import { H2, H3, P, Lead } from "@/components/ui/typography"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 
-// Service Feature Icons Component
-const FeatureIcon = ({ icon: Icon, className }: { icon: any; className?: string }) => (
-  <div className={cn("p-2 rounded-full bg-primary/10 inline-flex", className)}>
-    <Icon className="h-6 w-6 text-primary" />
-  </div>
-)
+// Define Icon type using LucideIcon or React.ComponentType
+type IconType = React.ComponentType<{ className?: string }>
 
 // Core Service Card Component
 interface ServiceCardProps {
   title: string
   description: string
-  icon: any
+  icon: IconType
   href: string
   delay?: number
   className?: string
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon: Icon, href, delay = 0, className }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, description, icon: Icon, href, className }) => {
   return (
     <div>
       <Card className={cn("h-full transition-all hover:shadow-md group", className)}>

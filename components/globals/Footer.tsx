@@ -149,7 +149,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <FancyLogo />
             <p className="max-w-xs text-sm text-muted-foreground">
-              Bringing innovative technology solutions to businesses across Texas. Let's harness the power of web development, 
+              Bringing innovative technology solutions to businesses across Texas. Let&apos;s harness the power of web development, 
               workflow optimization, and AI integration to drive your growth.
             </p>
             
@@ -231,7 +231,7 @@ const Footer: React.FC = () => {
                 </Button>
               </form>
               <p className="text-xs text-muted-foreground mt-2">
-                We'll never share your email. Unsubscribe anytime.
+                We&apos;ll never share your email. Unsubscribe anytime.
               </p>
             </div>
           </div>

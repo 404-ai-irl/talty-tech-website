@@ -40,7 +40,7 @@ export default function MissionPage() {
             </div>
           </div>
           <P>
-            At Talty Tech, we're committed to helping businesses harness the power of technology to achieve their goals. 
+            At Talty Tech, we&apos;re committed to helping businesses harness the power of technology to achieve their goals. 
             Our mission goes beyond simply building websites or implementing software—we aim to be a strategic partner 
             that understands your business challenges and creates tailored solutions that drive real results.
           </P>
@@ -77,7 +77,7 @@ export default function MissionPage() {
           <P>
             Our vision extends beyond creating websites or implementing software—we aim to build lasting partnerships 
             with our clients, serving as their trusted technology advisor for years to come. We measure our success not 
-            just by the quality of our work, but by the impact it has on our clients' businesses.
+            just by the quality of our work, but by the impact it has on our clients&apos; businesses.
           </P>
         </section>
         
@@ -101,8 +101,8 @@ export default function MissionPage() {
                     <H3 className="mb-2">Integrity & Transparency</H3>
                     <P className="text-muted-foreground">
                       We operate with complete honesty and transparency in all our dealings. 
-                      We provide clear communication about processes, timelines, and costs, and we always do what's 
-                      right for our clients, even when it's difficult.
+                      We provide clear communication about processes, timelines, and costs, and we always do what&apos;s 
+                      right for our clients, even when it&apos;s difficult.
                     </P>
                   </div>
                 </div>
@@ -147,9 +147,9 @@ export default function MissionPage() {
                   <div>
                     <H3 className="mb-2">Passion for Innovation</H3>
                     <P className="text-muted-foreground">
-                      We're passionate about technology and its potential to transform businesses. 
+                      We&apos;re passionate about technology and its potential to transform businesses. 
                       We stay at the forefront of industry developments and bring creative, innovative 
-                      solutions to our clients' challenges.
+                      solutions to our clients&apos; challenges.
                     </P>
                   </div>
                 </div>

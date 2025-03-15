@@ -69,6 +69,12 @@ export async function getServices(categorySlug?: string | null): Promise<Service
       })
     );
     
+    console.log('Returning servicesWithCategories:', 
+      servicesWithCategories.map(item => ({
+        category: item.service_categories?.category_name || 'Unknown',
+        // Remove services_count since 'services' property doesn't exist on this object
+        title: item.title
+      })));
     return servicesWithCategories;
   } catch (error) {
     console.error("Error in getServices:", error);
@@ -125,6 +131,7 @@ export type ServiceWithDetails = Service & {
 }
 
 export async function getServicesByCategoryWithLimit(limit: number = 5): Promise<{category: ServiceCategory, services: Service[]}[]> {
+  console.log('getServicesByCategoryWithLimit called with limit:', limit);
   const supabase = await createClient();
 
   try {
@@ -135,40 +142,52 @@ export async function getServicesByCategoryWithLimit(limit: number = 5): Promise
       .order("category_name");
 
     if (categoriesError) {
+      console.error('Error fetching categories in getServicesByCategoryWithLimit:', categoriesError);
       console.error("Error fetching categories:", categoriesError);
       throw new Error("Failed to fetch categories");
     }
 
+    console.log('Categories fetched:', categories?.length || 0);
     if (!categories || categories.length === 0) {
+      console.log('No categories found, returning empty array');
       return [];
     }
 
     // Get services for each category
     const servicesWithCategories = await Promise.all(
       categories.map(async (category) => {
-        const { data: services, error: servicesError } = await supabase
-          .from("services")
-          .select("*")
-          .eq("category_id", category.id)
-          .order("title")
-          .limit(limit);
+        try {
+          console.log(`Fetching services for category: ${category.category_name} (ID: ${category.id})`);
+          const { data: services, error: servicesError } = await supabase
+            .from("services")
+            .select("*")
+            .eq("category_id", category.id)
+            .order("title")
+            .limit(limit);
 
-        if (servicesError) {
-          console.error(`Error fetching services for category ${category.category_name}:`, servicesError);
+          if (servicesError) {
+            console.error(`Error fetching services for category ${category.category_name}:`, servicesError);
+            return { category, services: [] };
+          }
+
+          console.log(`Found ${services?.length || 0} services for category ${category.category_name}`);
+          return {
+            category,
+            services: services || []
+          };
+        } catch (err) {
+          console.error(`Exception fetching services for category ${category?.category_name || 'unknown'}:`, err);
           return { category, services: [] };
         }
-
-        return {
-          category,
-          services: services || []
-        };
       })
     );
 
+    console.log('Final result:', servicesWithCategories.map(c => `${c.category?.category_name || 'Unknown'}: ${c.services?.length || 0} services`));
     return servicesWithCategories;
   } catch (error) {
     console.error("Error in getServicesByCategory:", error);
-    throw new Error("Failed to fetch services by category");
+    // Return empty array instead of throwing error to prevent breaking the UI
+    return [];
   }
 }
 
