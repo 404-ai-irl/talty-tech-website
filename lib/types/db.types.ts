@@ -7,6 +7,31 @@ export type Json =
   | Json[]
 
 export type Database = {
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          operationName?: string
+          query?: string
+          variables?: Json
+          extensions?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
       leads: {
@@ -39,9 +64,65 @@ export type Database = {
         }
         Relationships: []
       }
+      service_categories: {
+        Row: {
+          category_name: string
+          category_slug: string
+          created_at: string
+          id: string
+        }
+        Insert: {
+          category_name: string
+          category_slug: string
+          created_at?: string
+          id?: string
+        }
+        Update: {
+          category_name?: string
+          category_slug?: string
+          created_at?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      service_details: {
+        Row: {
+          benefits: Json
+          created_at: string
+          id: string
+          process: Json
+          related_services: number[]
+          service_id: number
+        }
+        Insert: {
+          benefits?: Json
+          created_at?: string
+          id?: string
+          process?: Json
+          related_services?: number[]
+          service_id: number
+        }
+        Update: {
+          benefits?: Json
+          created_at?: string
+          id?: string
+          process?: Json
+          related_services?: number[]
+          service_id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_details_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: true
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       services: {
         Row: {
-          category: Database["public"]["Enums"]["service_category"]
+          category_id: string
           created_at: string | null
           description: string
           icon: string
@@ -50,7 +131,7 @@ export type Database = {
           "url-slug": string
         }
         Insert: {
-          category: Database["public"]["Enums"]["service_category"]
+          category_id: string
           created_at?: string | null
           description: string
           icon: string
@@ -59,7 +140,7 @@ export type Database = {
           "url-slug": string
         }
         Update: {
-          category?: Database["public"]["Enums"]["service_category"]
+          category_id?: string
           created_at?: string | null
           description?: string
           icon?: string
@@ -67,7 +148,15 @@ export type Database = {
           title?: string
           "url-slug"?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "services_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "service_categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
@@ -77,7 +166,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      service_category: "Consulting" | "Development" | "Education"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -181,3 +270,4 @@ export type CompositeTypes<
   : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
     ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
+
