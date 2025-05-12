@@ -28,13 +28,15 @@ export const metadata: Metadata = {
   title: "Talty Tech",
   description:
     "Empowering Texas businesses with innovative web development and AI solutions. Our expert team combines modern design with robust technology to create dynamic ecommerce sites, interactive web apps, and automated business platforms.",
-  facebookDomainVerification: "ptqet2ozqz9vhfnidumn6y6dxqih3x",
   openGraph: {
     title: "Talty Tech",
     description:
       "Empowering Texas businesses with innovative web development and AI solutions. Our expert team combines modern design with robust technology to create dynamic ecommerce sites, interactive web apps, and automated business platforms.",
     // images: [""]
   },
+  other: {
+    facebookDomainVerification: "ptqet2ozqz9vhfnidumn6y6dxqih3x",
+  }
 };
 
 export default function RootLayout({
