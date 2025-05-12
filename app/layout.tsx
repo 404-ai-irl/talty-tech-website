@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     // images: [""]
   },
   other: {
-    facebookDomainVerification: "ptqet2ozqz9vhfnidumn6y6dxqih3x",
+    "facebook-domain-verification": "ptqet2ozqz9vhfnidumn6y6dxqih3x",
   }
 };
 
