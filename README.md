@@ -1,3 +1,6 @@
+> Repo is outdated.
+> This repo has been moved to the [Talty Tech](https://taltytech.com) Turborepo
+
 # Talty Tech Website
 
 This is the official website for Talty Tech, built with Next.js 15 and React 19.
